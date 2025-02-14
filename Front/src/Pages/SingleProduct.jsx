@@ -44,7 +44,7 @@ function SingleProduct() {
                         <h2 className="my-2"> <strong>Description  :- </strong> {product.description}</h2>
                         <p className="my-2" style={{ color: product.inStock ? "white" : "red" }}> Out Of Stock </p>
                         <div>
-                            <button className="py-1 px-4  rounded bg-cyan-500 mr-4" onClick={()=>addToCart(product)}> Add To Cart</button>
+                            <button className="py-1 px-4  rounded bg-cyan-500 mr-4 hover:bg-cyan-200" onClick={()=>addToCart(product)}> Add To Cart</button>
                             <button className="py-1 px-4  rounded bg-amber-300 "> Add To Wishlist</button>
                         </div>
                     </div>

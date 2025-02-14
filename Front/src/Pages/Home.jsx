@@ -19,7 +19,7 @@ function Home() {
      {
        products.length>0 ?(
           products.map((item)=>{
-            return <div key={item._id} className="text-center">
+            return <div key={item._id} className="text-center ">
            <Link to={`/product/${item._id}`}> <img className="w-[12rem] h-[12rem] object-contain " src={item.url}  /> </Link>
             <h2 className="mt-4 font-bold ">{item.name.split(" ").slice(0,3).join(" ")+"..."}</h2>
             <p className="text-blue-700 my-2"> $ {item.price}</p>
