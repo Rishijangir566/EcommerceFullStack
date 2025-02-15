@@ -12,27 +12,27 @@ const router = createBrowserRouter([
     path: "/",
     element: <First />,
     children: [
-    {
-      index:true,
-      element:<Home />
-    },
-    {
-      path:"/about",
-      element:<About />
-    },
-    {
-      path:"/cart",
-      element:<Cart />
-    },
-    {
-      path:"/contact",
-      element:<Contact />
-    },
-    {
-      path:"/product/:id",
-      element:<SingleProduct />
-    }
-  ],
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: "/about",
+        element: <About />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
+      },
+      {
+        path: "/product/:id",
+        element: <SingleProduct />
+      }
+    ],
   },
 ]);
 function App() {

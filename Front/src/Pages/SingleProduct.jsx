@@ -4,7 +4,7 @@ import instance from "../axiosConfig"
 import { ecomcontext } from "../context/EcomContext"
 
 function SingleProduct() {
-    const {addToCart}=useContext(ecomcontext)
+    const { addToCart ,existsInCart,removeFromCart} = useContext(ecomcontext)
     const { id } = useParams()
     const [product, setProdct] = useState([])
     const [loading, setLoading] = useState(true)
@@ -18,7 +18,7 @@ function SingleProduct() {
         try {
             setLoading(false)
             const response = await instance.get(`/product/${id}`)
-            console.log(response.data);
+            // console.log(response.data);
             setProdct(response.data)
         } catch (error) {
             console.log(error);
@@ -27,7 +27,6 @@ function SingleProduct() {
         }
     }
 
-//    function addToCart(){}
 
 
     if (loading) return <h2> Loading ...</h2>
@@ -43,10 +42,21 @@ function SingleProduct() {
                         <h2 className="my-2"> <strong>Brand  :- </strong> {product.brand}</h2>
                         <h2 className="my-2"> <strong>Description  :- </strong> {product.description}</h2>
                         <p className="my-2" style={{ color: product.inStock ? "white" : "red" }}> Out Of Stock </p>
-                        <div>
-                            <button className="py-1 px-4  rounded bg-cyan-500 mr-4 hover:bg-cyan-200" onClick={()=>addToCart(product)}> Add To Cart</button>
+                        
+                            <div>                                
+                                {
+                                    existsInCart(product._id)?(
+                                        
+                                        <button className="py-1 px-4  rounded bg-red-500 mr-4 hover:bg-cyan-200" onClick={() => removeFromCart(product._id)}> Remove From Cart</button>
+                                    ):(
+                                        <button className="py-1 px-4  rounded bg-cyan-500 mr-4 hover:bg-cyan-200" onClick={() => addToCart(product)}> Add To Cart</button>
+                                    )
+                                }
+
+
                             <button className="py-1 px-4  rounded bg-amber-300 "> Add To Wishlist</button>
-                        </div>
+                            </div>
+                      
                     </div>
                 </div>
 
