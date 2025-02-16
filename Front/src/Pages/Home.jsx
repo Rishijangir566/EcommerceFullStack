@@ -23,7 +23,7 @@ function Home() {
                 <Link to={`/product/${item._id}`}> <img className="w-[12rem] h-[12rem] object-contain " src={item.url} /> </Link>
                 <h2 className="mt-4 font-bold ">{item.name.split(" ").slice(0, 3).join(" ") + "..."}</h2>
                 <p className="text-blue-700 my-2"> $ {item.price}</p>
-                <button className="py-1 px-4 border rounded"> Add To Wishlist</button>
+                <button className="py-1 px-4 border rounded" ><Link to={`/product/${item._id}`}> Add To Wishlist </Link></button>
                 
               </div>
             })

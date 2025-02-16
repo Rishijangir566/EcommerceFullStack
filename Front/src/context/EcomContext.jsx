@@ -8,6 +8,7 @@ function EcomContext({ children }) {
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const [category, setCategory] = useState([])
+    const [wishlist, setWishList] = useState([])
     const [cart, setCart] = useState([])
 
     async function fetchProducts() {
@@ -102,6 +103,8 @@ function EcomContext({ children }) {
             (cartItem) =>  cartItem.product._id === productId )
             return productAlreadyExists ?true:false
   }
+
+     
 
 
     return (

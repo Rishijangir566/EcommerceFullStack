@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ecomcontext } from "../context/EcomContext";
 
 function Header() {
@@ -20,6 +20,7 @@ function Header() {
       <nav>
         <ul className="flex py-1 ">
           <li className="mx-4"><Link to="/">Home</Link> </li>
+          <li className="mx-4"><Link to="/product/:id">WishList</Link> </li>
 
           <li className="mx-4">
           <button
