@@ -1,11 +1,13 @@
 import { createContext, useState } from "react"
 import instance from "../axiosConfig"
+import { useParams } from "react-router-dom";
 
 export const ecomcontext = createContext();
 function EcomContext({ children }) {
 
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
+    const [category, setCategory] = useState([])
     const [cart, setCart] = useState([])
 
     async function fetchProducts() {
@@ -21,9 +23,45 @@ function EcomContext({ children }) {
             setLoading(false)
         }
     }
+    
+
+    async function selectedCategory(type){
+        const {brand}=useParams()
+        const cat=type
+        console.log(brand);
+        
+        try {
+            setLoading(true)
+            const response = await instance.get(`/product/brands/${cat}`)
+            console.log(response.data);
+            setProducts(response.data)
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            setLoading(false)
+        }
+         
+      }
+
+
+    async function fetchCategory() {
+        try {
+            setLoading(true)
+            const response = await instance.get("/product/categories/all")
+            // console.log(response.data);
+            setCategory(response.data)
+        } catch (error) {
+            console.log(error);
+
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
 
     function addToCart(product) {
-
 
         if (existsInCart(product._id)) {
             setCart(
@@ -67,7 +105,7 @@ function EcomContext({ children }) {
 
 
     return (
-        <ecomcontext.Provider value={{ loading, products, cart,updateQuantity, addToCart, removeFromCart,existsInCart, fetchProducts }}>
+        <ecomcontext.Provider value={{ loading, products, cart,updateQuantity, addToCart, removeFromCart,existsInCart, fetchProducts ,fetchCategory,category ,selectedCategory}}>
             {children}
         </ecomcontext.Provider>
     )
