@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 
 function Cart() {
-    const { cart,removeFromCart,updateQuantity } = useContext(ecomcontext)
+    const { cart, removeFromCart, updateQuantity } = useContext(ecomcontext)
 
-     const [totalPrice, setTotalPrice]=useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
 
-    useEffect(()=>{
-if(cart){
-    setTotalPrice(
-        cart.reduce((acc,cur)=>{ 
-            return  acc+cur.product.price*cur.quantity
-        },0)
-    )
-}
-    },[totalPrice,cart])
+    useEffect(() => {
+        if (cart) {
+            setTotalPrice(
+                cart.reduce((acc, cur) => {
+                    return acc + cur.product.price * cur.quantity
+                }, 0)
+            )
+        }
+    }, [totalPrice, cart])
 
     console.log(cart);
 
@@ -45,13 +45,13 @@ if(cart){
                                     <div className="flex text-2xl">
                                         {
                                             item.quantity === 1 ? (
-                                                <p className="bg-yellow-300 px-2  cursor-pointer " onClick={() => removeFromCart(item.product._id)}> <MdDeleteForever className="pt-2"/></p>
+                                                <p className="bg-yellow-300 px-2  cursor-pointer " onClick={() => removeFromCart(item.product._id)}> <MdDeleteForever className="pt-2" /></p>
                                             ) : (
-                                                <p className="bg-yellow-300 cursor-pointer px-2 " onClick={()=>updateQuantity(item.product._id,"-")}> - </p>
+                                                <p className="bg-yellow-300 cursor-pointer px-2 " onClick={() => updateQuantity(item.product._id, "-")}> - </p>
                                             )
                                         }
                                         <p className="px-8 border  mx-1">{item.quantity}</p>
-                                        <p className="bg-yellow-300 px-2 cursor-pointer" onClick={()=>updateQuantity(item.product._id,"+")} > + </p>
+                                        <p className="bg-yellow-300 px-2 cursor-pointer" onClick={() => updateQuantity(item.product._id, "+")} > + </p>
                                     </div>
                                 </div>
                             </div>

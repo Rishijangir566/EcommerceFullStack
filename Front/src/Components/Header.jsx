@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom"
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ecomcontext } from "../context/EcomContext";
 
 function Header() {
-  const { cart, category, fetchCategory ,selectedCategory} = useContext(ecomcontext)
-  console.log(category);
-  
-  // const [dropdownOpen,setDropdownOpen]=useState(false)
+  const { cart, categories, fetchCategory } = useContext(ecomcontext)
 
-  
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+
 
   useEffect(() => {
     fetchCategory()
@@ -23,23 +22,53 @@ function Header() {
           <li className="mx-4"><Link to="/product/:id">WishList</Link> </li>
 
           <li className="mx-4">
-          <button
-              className="rounded-lg  text-center inline-flex items-center"
-              // onClick={() => setDropdownOpen((prev) => !prev)}
+            <button
+              id="dropdownDefaultButton"
+              data-dropdown-toggle="dropdown"
+              className="rounded-lg px-3 text-center inline-flex items-center relative cursor-pointer"
+              type="button"
+              onClick={() => setDropdownOpen((prev) => !prev)}
             >
-            Select By Category
+              Shop By Category
+              <svg
+                className="w-2.5 h-2.5 ms-3 transition-all duration-300"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+                style={dropdownOpen ? { transform: "rotate(180deg)" } : {}}
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
             </button>
 
-            <div className="  bg-amber-300 h-[22rem] pl-4 w-[12rem]   group-[.is-published]:block ">
-              <ul> {
-                category.length > 0 &&
-                category.map((item, index) => {
-                  return (
-                    <li key={index} onClick={(e)=>selectedCategory(e.target.innerHTML)}><Link to=""> {item.category}</Link> </li>
-                  )
-                })
-              }  </ul>
+            <div id="dropdown"
+              className={`z-1 ${dropdownOpen ? "block" : "hidden"} bg-white devide-y divide-gray-100 shadow-sm dark:bg-amber-400 absolute mt-4 w-44`}
+            >
+              <ul className="py-2 text-sm text-black dark:text-black"
+                aria-labelledby="dropdownDefaultButton"
+              >
+                {categories.length > 0 &&
+                  categories.map((category, index) => {
+                    return (
+                      <li key={index}>
+                        <a href={`/category/${category.category.toLowerCase()}`}>
+                          {category.category}
+                        </a>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+
             </div>
+
 
           </li>
 
