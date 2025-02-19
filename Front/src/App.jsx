@@ -6,6 +6,7 @@ import Cart from "./Pages/Cart"
 import SingleProduct from "./Pages/SingleProduct"
 import EcomContext from "./context/EcomContext"
 import ShopByCategory from "./Pages/ShopByCategory"
+import AddProduct from "./admin/AddProduct"
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,14 @@ const router = createBrowserRouter([
         path: "/product/:id",
         element: <SingleProduct />
       },
+      
       {
         path: "/category/:categoryId",
         element: <ShopByCategory />
+      },
+      {
+        path: "/admin/addproduct",
+        element: <AddProduct />
       }
     ],
   },

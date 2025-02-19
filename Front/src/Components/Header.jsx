@@ -15,11 +15,11 @@ function Header() {
 
   return (
     <header className="flex justify-between px-12 py-2 bg-green-300">
-      <h2 className="text-2xl font-bold">Ecommerce</h2>
+     <Link to="/"> <h2 className="text-2xl font-bold">Ecommerce</h2></Link>
       <nav>
         <ul className="flex py-1 ">
           <li className="mx-4"><Link to="/">Home</Link> </li>
-          <li className="mx-4"><Link to="/product/:id">WishList</Link> </li>
+        
 
           <li className="mx-4">
             <button
@@ -49,7 +49,7 @@ function Header() {
             </button>
 
             <div id="dropdown"
-              className={`z-1 ${dropdownOpen ? "block" : "hidden"} bg-white devide-y divide-gray-100 shadow-sm dark:bg-amber-400 absolute mt-4 w-44`}
+              className={`z-1 ${dropdownOpen ? "block" : "hidden"} bg-white devide-y divide-gray-100 shadow-sm dark:bg-blue-400 absolute pl-4 mt-3 w-44`}
             >
               <ul className="py-2 text-sm text-black dark:text-black"
                 aria-labelledby="dropdownDefaultButton"
@@ -57,7 +57,7 @@ function Header() {
                 {categories.length > 0 &&
                   categories.map((category, index) => {
                     return (
-                      <li key={index}>
+                      <li key={index}className="py-1">
                         <a href={`/category/${category.category.toLowerCase()}`}>
                           {category.category}
                         </a>

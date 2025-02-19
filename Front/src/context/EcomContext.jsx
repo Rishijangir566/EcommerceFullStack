@@ -60,19 +60,7 @@ function EcomContext({ children }) {
 
 
 
-    function addToWishlist(product) {
-
-        if (existsInCart(product._id)) {
-            setCart(
-                cart.map((cartItem) =>
-                    cartItem._id === product._id ? { ...cartItem, quantity: Number(cartItem.quantity) + 1 } : cartItem
-                ))
-        }
-        else {
-            const obj = { product, quantity: 1 }
-            setCart([...cart, obj])
-        }
-    }
+   
 
 
     function addToCart(product) {
