@@ -35,14 +35,9 @@ function AddProduct() {
 
             const response = await instance.post("/product/add", frm)
             console.log(response);
-
-
-
         } catch (error) {
             console.log(error);
-
         }
-
     }
 
     return (
