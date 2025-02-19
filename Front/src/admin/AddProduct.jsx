@@ -68,7 +68,7 @@ function AddProduct() {
                 placeholder="Enter Product Discounted Price"
                 value={form.discountPrice} onChange={handleChange} />
 
-            <input type="file"  name="image"  onChange={handleChange} />
+            <input type="file" name="image" onChange={handleChange} />
 
             <button type="submit"> Add Product </button>
 
