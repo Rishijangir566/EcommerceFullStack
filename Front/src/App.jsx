@@ -7,6 +7,8 @@ import SingleProduct from "./Pages/SingleProduct"
 import EcomContext from "./context/EcomContext"
 import ShopByCategory from "./Pages/ShopByCategory"
 import AddProduct from "./admin/AddProduct"
+import Register from "./Pages/Register"
+import Login from "./Pages/Login"
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,19 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />
+      },
+
+      {
+        path: "/user/register",
+        element: <Register />
+      },
+      {
+        path: "/user/login",
+        element: <Login />
+      },
+      {
+        path: "/register",
+        element: <Register />
       },
 
       {

@@ -2,9 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import instance from "../axiosConfig"
 import { ecomcontext } from "../context/EcomContext"
+import DisplayProduct from "../Components/DisplayProduct"
 
 function SingleProduct() {
-    const { addToCart, existsInCart, removeFromCart } = useContext(ecomcontext)
+    const { addToCart, existsInCart, removeFromCart, filterByCategory, productByCat } = useContext(ecomcontext)
     const { id } = useParams()
     const [product, setProdct] = useState([])
     const [loading, setLoading] = useState(true)
@@ -12,7 +13,10 @@ function SingleProduct() {
         if (id) {
             fetchSingleProduct(id)
         }
-    }, [id])
+        if (product.category) {
+            filterByCategory(product.category)
+        }
+    }, [id, product.category])
 
     async function fetchSingleProduct(id) {
         try {
@@ -52,8 +56,6 @@ function SingleProduct() {
                                     <button className="py-1 px-4  rounded bg-cyan-500 mr-4 hover:bg-cyan-200" onClick={() => addToCart(product)}> Add To Cart</button>
                                 )
                             }
-
-
                             <button className="py-1 px-4  rounded bg-amber-300 "> Add To Wishlist</button>
                         </div>
 
@@ -62,7 +64,10 @@ function SingleProduct() {
 
 
             }
-
+            <div>
+                <h2 className="text-center bg-cyan-300 font-bold text-2xl"> Simillar Products </h2>
+                <DisplayProduct product={productByCat.filter((item) => item._id !== product._id)} />
+            </div>
         </>
     )
 }

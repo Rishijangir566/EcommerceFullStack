@@ -71,7 +71,7 @@ function Header() {
 
 
           </li>
-
+     <li> <Link to="/register">Login</Link> </li>
 
           <li className="mx-4 relative"><Link to="/cart">Cart</Link> <span className="absolute top-[-5px] right-[-20px] text-white bg-red-500 rounded-full px-1.5  text-sm"> {cart.length}</span>
           </li>

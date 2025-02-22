@@ -9,14 +9,14 @@ function EcomContext({ children }) {
     const [products, setProducts] = useState([])
     const [categories, setCategories] = useState([])
     const [productByCat, setProductByCat] = useState([])
-    const [wishlist, setWishList] = useState([])
+    // const [wishlist, setWishList] = useState([])
     const [cart, setCart] = useState([])
 
     async function fetchProducts() {
         try {
             setLoading(true)
             const response = await instance.get("/product")
-            console.log(response.data);
+            // console.log(response.data);
             setProducts(response.data)
         } catch (error) {
             console.log(error);
@@ -60,7 +60,7 @@ function EcomContext({ children }) {
 
 
 
-   
+
 
 
     function addToCart(product) {
@@ -77,7 +77,7 @@ function EcomContext({ children }) {
         }
     }
 
-
+    
     function updateQuantity(productId, sign) {
 
         if (!existsInCart(productId)) {
@@ -114,14 +114,14 @@ function EcomContext({ children }) {
             loading,
             products,
             cart,
+            categories,
+            productByCat,
             updateQuantity,
             addToCart,
             removeFromCart,
             existsInCart,
             fetchProducts,
             fetchCategory,
-            categories,
-            productByCat,
             filterByCategory
         }}>
 
