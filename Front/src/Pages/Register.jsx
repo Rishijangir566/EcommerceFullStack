@@ -36,15 +36,19 @@ function Register() {
     }
 
     return (
-        <>
-            <form action="" onSubmit={handleSubmit}>
+        <> 
+        <div className=" py-4 px-8 bg-red-100 rounded-2xl w-[40%]  mx-auto  my-12 ">
+
+       
+            <h2 className="text-center my-4 text-3xl font-medium"> Registration Form</h2>
+            <form action="" onSubmit={handleSubmit} className="flex-col flex">
                 <input
                     type="text"
                     placeholder="Enter Name"
                     name="name"
                     value={data.name}
                     onChange={handleChange}
-                    className="border"
+                    className="border mt-4 pl-2"
                 />
 
                 <input
@@ -53,7 +57,7 @@ function Register() {
                     name="email"
                     value={data.email}
                     onChange={handleChange}
-                    className="border"
+                    className="border mt-4 pl-2"
                 />
 
                 <input
@@ -62,7 +66,7 @@ function Register() {
                     name="password"
                     value={data.password}
                     onChange={handleChange}
-                    className="border"
+                    className="border mt-4 pl-2"
                 />
 
                 <input
@@ -70,14 +74,15 @@ function Register() {
                     placeholder="Confirm Password"
                     name="cpassword"
                     onChange={handleConfirmPassword}
-                    className="border"
+                    className="border mt-4 pl-2"
                 />
 
                 {!passwordMatch ? <span>Password dosnt match </span> : ""}
-                <button type="submit"> Register</button>
+                <button type="submit" className="bg-green-300 py-1 my-8 rounded text-xl font-bold"> Register</button>
             </form>
-            <p>
-        Already Register ? <Link to="/user/login"> Login</Link>
+            </div>
+            <p className="my-8">
+        Already Register ? <Link to="/user/login" className="text-blue-700 "> Login</Link>
     </p>
         </>
     )

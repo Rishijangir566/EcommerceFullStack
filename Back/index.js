@@ -11,7 +11,7 @@ const port = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "http://localhost:5173" }))
+app.use(cors({ origin: process.env.FRONTEND_URI }))
 
 app.use("/api", ProductRouter);
 app.use("/api/user", userRouter);
