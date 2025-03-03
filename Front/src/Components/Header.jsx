@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useContext, useEffect, useState } from "react";
 import { ecomcontext } from "../context/EcomContext";
+import { useAuth } from "../context/AuthProvider";
 
 function Header() {
   const { cart, categories, fetchCategory } = useContext(ecomcontext)
-
+  const { isUserLoggedIn, logout , isAdminLoggedIn } = useAuth()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
 
@@ -15,11 +16,11 @@ function Header() {
 
   return (
     <header className="flex justify-between px-12 py-2 bg-green-300">
-     <Link to="/"> <h2 className="text-2xl font-bold">Ecommerce</h2></Link>
+      <Link to="/"> <h2 className="text-2xl font-bold">Ecommerce</h2></Link>
       <nav>
         <ul className="flex py-1 ">
           <li className="mx-4"><Link to="/">Home</Link> </li>
-        
+
 
           <li className="mx-4">
             <button
@@ -57,9 +58,9 @@ function Header() {
                 {categories.length > 0 &&
                   categories.map((category, index) => {
                     return (
-                      <li key={index}className="py-1">
-                        <a href={`/category/${category.category.toLowerCase()}`}>
-                          {category.category}
+                      <li key={index} className="py-1">
+                        <a href={`/category/${category.name}`}>
+                          {category.name}
                         </a>
                       </li>
                     )
@@ -71,7 +72,17 @@ function Header() {
 
 
           </li>
-     <li> <Link to="/register">Login</Link> </li>
+
+          {/* <li> <Link to="/register">Login</Link> </li> */}
+          {isUserLoggedIn || isAdminLoggedIn  ? (
+            <li>
+              <button onClick={logout} className="cursor-pointer"> Logout </button>
+            </li>
+          ) : (
+            <li>
+              <NavLink to="/user/register">Login </NavLink>
+            </li>
+          )}
 
           <li className="mx-4 relative"><Link to="/cart">Cart</Link> <span className="absolute top-[-5px] right-[-20px] text-white bg-red-500 rounded-full px-1.5  text-sm"> {cart.length}</span>
           </li>

@@ -11,16 +11,17 @@ function EcomContext({ children }) {
     const [productByCat, setProductByCat] = useState([])
     // const [wishlist, setWishList] = useState([])
     const [cart, setCart] = useState([])
+    const [dealProducts, setDealProducts] = useState([])
 
     async function fetchProducts() {
         try {
             setLoading(true)
-            const response = await instance.get("/product")
+            // const response = await instance.get("/product")
+            const response = await instance.get("/product/get",{withCredentials:true})
             // console.log(response.data);
             setProducts(response.data)
         } catch (error) {
             console.log(error);
-
         } finally {
             setLoading(false)
         }
@@ -31,7 +32,8 @@ function EcomContext({ children }) {
 
         try {
             setLoading(true)
-            const response = await instance.get(`/product/?category=${category}`)
+            // const response = await instance.get(`/product/?category=${category}`)
+            const response = await instance.get(`/product/get/?category=${category}`)
             console.log(response.data);
             setProductByCat(response.data)
         } catch (error) {
@@ -47,7 +49,8 @@ function EcomContext({ children }) {
     async function fetchCategory() {
         try {
             setLoading(true)
-            const response = await instance.get("/product/categories/all")
+            // const response = await instance.get("/product/categories/all")
+            const response = await instance.get("/product/category")
             // console.log(response.data);
             setCategories(response.data)
         } catch (error) {
@@ -93,7 +96,7 @@ function EcomContext({ children }) {
             )
         )
     }
-    console.log(cart)
+    // console.log(cart)
 
 
     function removeFromCart(productId) {
@@ -106,7 +109,15 @@ function EcomContext({ children }) {
         return productAlreadyExists ? true : false
     }
 
-
+   async function fetchHotDeals(){
+    try{
+        const response=await instance.get("/deals" ,{withCredentials:true})
+      setDealProducts(response.data)
+    }catch(error){
+        console.log(error);
+        
+    }
+   }
 
 
     return (
@@ -116,13 +127,15 @@ function EcomContext({ children }) {
             cart,
             categories,
             productByCat,
+            dealProducts,
             updateQuantity,
             addToCart,
             removeFromCart,
             existsInCart,
             fetchProducts,
             fetchCategory,
-            filterByCategory
+            filterByCategory,
+            fetchHotDeals
         }}>
 
             {children}

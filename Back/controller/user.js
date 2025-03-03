@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 import User from "../models/userModel.js"
 import jwt from "jsonwebtoken"
+import "dotenv/config"
+
 
 
 export async function registerUser(req, res) {
@@ -41,13 +43,12 @@ export async function loginUser(req, res) {
 
       console.log("loginToken", loginToken);
 
-      res.cookie("loginToken", loginToken), {
+      res.cookie("loginToken", loginToken, {
          httpOnly: false,
          secure: false,
          sameSite: "strict", // strict / lax / none
          maxAge: 3600000,
-      }
-      res.send({ message: " Login Successful", user: user })
+      }).send({ message: "Login Successful", user: user })
 
    } catch (error) {
       console.log(error);

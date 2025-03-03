@@ -9,6 +9,10 @@ import ShopByCategory from "./Pages/ShopByCategory"
 import AddProduct from "./admin/AddProduct"
 import Register from "./Pages/Register"
 import Login from "./Pages/Login"
+import AuthProvider from "./context/AuthProvider"
+// import ProtectedRoute from "./context/ProtectedRoute"
+import AdminLogin from "./admin/AdminLogin"
+import AddCategory from "./admin/AddCategory"
 
 const router = createBrowserRouter([
   {
@@ -34,10 +38,10 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
-        path: "/register",
-        element: <Register />
+        path: "/admin/login",
+        element: <AdminLogin/>
       },
-
+      
       {
         path: "/product/:id",
         element: <SingleProduct />
@@ -49,16 +53,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/addproduct",
-        element: <AddProduct />
+        // element:<ProtectedRoute><AddProduct /></ProtectedRoute> 
+        element:<AddProduct />
+      },
+      {
+        path: "/admin/addcategory",
+        element:<AddCategory />
       }
     ],
   },
 ]);
 function App() {
   return (
+    <AuthProvider>   
     <EcomContext >
       <RouterProvider router={router} />
     </EcomContext>
+    </AuthProvider>
   )
 }
 

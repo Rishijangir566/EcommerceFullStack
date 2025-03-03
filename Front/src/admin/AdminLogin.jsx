@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom"
 import instance from "../axiosConfig"
 import { useAuth } from "../context/AuthProvider"
 
-function Login() {
+function AdminLogin() {
 
     const [data, setData] = useState({
         email: "",
         password: ""
     })
 
-    const { checkAuth } = useAuth();
+    const { checkAuthAdmin} = useAuth();
     const navigate = useNavigate();
 
     function handlechange(e) {
@@ -23,9 +23,9 @@ function Login() {
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            const response = await instance.post("/user/login", data, { withCredentials: true })
+            const response = await instance.post("/admin/login", data, { withCredentials: true })
             console.log(response.data);
-            checkAuth()
+            checkAuthAdmin()
             if (response.status === 200 && response.data.message === "Login Successful") 
                 navigate("/")
             // window.location.href("/")
@@ -40,7 +40,7 @@ function Login() {
             <div className=" py-4 px-8 bg-red-100 rounded-2xl w-[30%]  mx-auto  my-12 ">
 
 
-                <h2 className="text-center my-4 text-3xl font-medium"> Login Form</h2>
+                <h2 className="text-center my-4 text-3xl font-medium"> Registration Form</h2>
                 <form action="" onSubmit={handleSubmit} className="flex-col flex">
                     <input
                         type="email"
@@ -68,4 +68,4 @@ function Login() {
     )
 }
 
-export default Login
+export default AdminLogin
