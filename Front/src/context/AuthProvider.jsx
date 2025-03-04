@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import instance from "../axiosConfig"
 
-const AuthContext = createContext()
+const AuthContext = createContext(null)
 
 function AuthProvider({ children }) {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
@@ -10,6 +10,7 @@ function AuthProvider({ children }) {
         checkAuth()
         checkAuthAdmin()
     }, [])
+    console.log(isUserLoggedIn);
 
     async function checkAuth() {
         try {
@@ -40,10 +41,10 @@ function AuthProvider({ children }) {
                 setIsUserLoggedIn(false)
                 checkAuth()
             } else {
-
-                await instance.get("/auth/logout", { withCredentials: true })
-                setIsUserLoggedIn(false)
+                await instance.post("/admin/logout", {}, { withCredentials: true })
+                setAdminLoggedIn(false)
                 checkAuthAdmin()
+                window.location.href = "/admin/login"
             }
 
         } catch (error) {

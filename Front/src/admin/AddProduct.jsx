@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import instance from "../axiosConfig";
+import { ecomcontext } from "../context/EcomContext";
 
 function AddProduct() {
+    const {categories} =useContext(ecomcontext)
     const [form, setForm] = useState({
         title: "",
         brand: "",
         category: "",
         usualPrice: "",
         discountPrice: "",
+        description:"",
         image: ""
     })
 
@@ -31,6 +34,7 @@ function AddProduct() {
             frm.append("category", form.category)
             frm.append("usualPrice", form.usualPrice)
             frm.append("discountPrice", form.discountPrice)
+            frm.append("description", form.description)
             frm.append("image", form.image)
 
             const response = await instance.post("/product/add", frm , {withCredentials:true})
@@ -51,9 +55,21 @@ function AddProduct() {
                 placeholder="Enter Product Brand"
                 value={form.brand} onChange={handleChange} />
 
-            <input type="text" className="border" name="category"
+                <select name="category" id=""
+                 value={form.category} onChange={handleChange}>
+                    <option value="" selected disabled> Select Category</option>
+                    {categories.map((category , index)=>{
+                        return (
+                            <option value={category._id} key={index}>
+                                {category.name}
+                            </option>
+                        )
+                    })}
+                </select>
+
+            {/* <input type="text" className="border" name="category"
                 placeholder="Enter Product Category"
-                value={form.category} onChange={handleChange} />
+                value={form.category} onChange={handleChange} /> */}
 
             <input type="text" className="border" name="usualPrice"
                 placeholder="Enter Product Usual Price"
@@ -62,6 +78,10 @@ function AddProduct() {
             <input type="text" className="border" name="discountPrice"
                 placeholder="Enter Product Discounted Price"
                 value={form.discountPrice} onChange={handleChange} />
+
+            <input type="text" className="border" name="description"
+                placeholder="Enter Description"
+                value={form.description} onChange={handleChange} />
 
             <input type="file" name="image" onChange={handleChange} />
 

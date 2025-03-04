@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import Admin from "../models/userModel.js";
+import Admin from "../models/adminModel.js";
 import "dotenv/config"
 
 
@@ -17,7 +17,7 @@ export async function loginAdmin(req, res) {
        // create token & send it back to client as cookie
  
        const adminToken = jwt.sign(
-          { id: user._id, email: user.email },
+          { id: admin._id, email: admin.email },
           process.env.JWT_SECRET,
           {
              expiresIn: "1h",
@@ -31,7 +31,7 @@ export async function loginAdmin(req, res) {
           secure: false,
           sameSite: "strict", // strict / lax / none
           maxAge: 3600000,
-       }).send({ message: "Login Successful", user: user })
+       }).send({ message: "Admin Login Successful", admin: admin })
  
     } catch (error) {
        console.log(error);

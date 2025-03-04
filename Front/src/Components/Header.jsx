@@ -76,11 +76,11 @@ function Header() {
           {/* <li> <Link to="/register">Login</Link> </li> */}
           {isUserLoggedIn || isAdminLoggedIn  ? (
             <li>
-              <button onClick={logout} className="cursor-pointer"> Logout </button>
+              <Link onClick={logout} className="cursor-pointer"> Logout </Link>
             </li>
           ) : (
             <li>
-              <NavLink to="/user/register">Login </NavLink>
+              <NavLink to="/user/login">Login </NavLink>
             </li>
           )}
 

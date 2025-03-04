@@ -4,7 +4,10 @@ import ProductModelData from "../models/productModel.js"
 
 export async function addToProduct(req, res) {
     try {
-        const newProduct = new ProductModelData({ ...req.body, image: req.file.path })
+        const file = req.file
+        if (!file) return res.status(404).send({ message: "file not found" })
+        const secure_url = await uploadToCloudinary(req)
+        const newProduct = new ProductModelData({ ...req.body, image: secure_url })
         await newProduct.save()
         res.status(201).send({ message: "product Added" })
     } catch (error) {
@@ -17,13 +20,21 @@ export async function addToProduct(req, res) {
 export async function fetchProducts(req, res) {
     try {
         let query = {}
-        if (req.query.category) {
-            query.category = { $regex: new RegExp(`^${req.query.category}$`, "i") }
+        if (req.params.id) {
+            query._id = req.params.id;
         }
+
+        if (req.query.category) {
+            const categoryId = await categoryModel.find({
+                name: { $regex: new RegExp(`^${req.query.category}$`, "i") }
+            })
+            query.category = categoryId;
+        }
+
         const products = await ProductModelData.find(query)
         res.send(products)
     } catch (error) {
-        res.status(500).send({ message: "product not found", Error: error.message })
+        res.status(500).send({ message: "couldn't fetch products", Error: error.message })
     }
 
 }
@@ -42,7 +53,7 @@ export async function fetchCategories(req, res) {
 
 export async function addCategory(req, res) {
     try {
-        console.log(req.file);        
+        console.log(req.file);
         const file = req.file;
         if (!file) return res.status(404).send({ message: "file not found" })
 

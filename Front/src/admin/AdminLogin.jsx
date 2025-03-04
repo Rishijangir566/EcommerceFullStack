@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import instance from "../axiosConfig"
 import { useAuth } from "../context/AuthProvider"
 
@@ -25,9 +25,9 @@ function AdminLogin() {
         try {
             const response = await instance.post("/admin/login", data, { withCredentials: true })
             console.log(response.data);
-            checkAuthAdmin()
-            if (response.status === 200 && response.data.message === "Login Successful") 
-                navigate("/")
+            checkAuthAdmin();
+            if (response.status === 200 && response.data.message === "Admin Login Successful") { navigate("/")}
+               
             // window.location.href("/")
         } catch (error) {
             console.log(error);
@@ -61,9 +61,7 @@ function AdminLogin() {
                     <button type="submit" className="bg-green-300 py-1 my-8 rounded text-xl font-bold"> Login</button>
                 </form>
             </div>
-            <p className="my-8">
-                New User ? <Link to="/user/register" className="text-blue-700 "> Register</Link>
-            </p>
+            
         </>
     )
 }

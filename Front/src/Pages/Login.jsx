@@ -26,8 +26,8 @@ function Login() {
             const response = await instance.post("/user/login", data, { withCredentials: true })
             console.log(response.data);
             checkAuth()
-            if (response.status === 200 && response.data.message === "Login Successful") 
-                navigate("/")
+            if (response.status === 200 && response.data.message === "Login Successful"){ navigate("/")} 
+               
             // window.location.href("/")
         } catch (error) {
             console.log(error);

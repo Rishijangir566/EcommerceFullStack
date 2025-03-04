@@ -5,25 +5,37 @@ import { ecomcontext } from "../context/EcomContext"
 import DisplayProduct from "../Components/DisplayProduct"
 
 function SingleProduct() {
-    const { addToCart, existsInCart, removeFromCart, filterByCategory, productByCat } = useContext(ecomcontext)
+    const { addToCart, existsInCart, removeFromCart, filterByCategory, productByCat, categories } = useContext(ecomcontext)
     const { id } = useParams()
     const [product, setProdct] = useState([])
     const [loading, setLoading] = useState(true)
+    const [categoryName, setCategoryName] = useState("")
     useEffect(() => {
         if (id) {
             fetchSingleProduct(id)
         }
         if (product.category) {
+            setCategoryName(
+                categories.find((obj)=>{
+                    return obj._id=== product.category;
+                }).name
+            )
             filterByCategory(product.category)
         }
     }, [id, product.category])
 
+    useEffect(()=>{
+        filterByCategory(categoryName);
+    },[categoryName])
+
+
+
     async function fetchSingleProduct(id) {
         try {
             setLoading(false)
-            const response = await instance.get(`/product/${id}`)
+            const response = await instance.get(`/product/get/${id}`)
             // console.log(response.data);
-            setProdct(response.data)
+            setProdct(response.data[0])
         } catch (error) {
             console.log(error);
         } finally {
@@ -38,14 +50,15 @@ function SingleProduct() {
         <>
             {
                 <div className="flex m-12 ">
-                    <div > <img className="w-[20rem] mr-8" src={product.url} alt="" /></div>
+                    <div className="w-[20rem] my-4 mr-8" > <img className="mr-8" src={product.image} alt="" /></div>
                     <div className="text-xl font-medium">
-                        <h2 className="my-2"> <strong>Name :- </strong> {product.name}</h2>
-                        <p className="my-2">  <strong> Rating  :- </strong> {product.totalRating}</p>
-                        <h2 className="my-2"> <strong>Price  :- </strong> {product.price}</h2>
+                        <h2 className="my-2"> <strong>Name :- </strong> {product.title}</h2>
+                        {/* <p className="my-2">  <strong> Rating  :- </strong> {product.totalRating}</p> */}
+                        <h2 className="my-2"> <strong>Price  :- </strong> {product.usualPrice}</h2>
                         <h2 className="my-2"> <strong>Brand  :- </strong> {product.brand}</h2>
-                        <h2 className="my-2"> <strong>Description  :- </strong> {product.description}</h2>
-                        <p className="my-2" style={{ color: product.inStock ? "white" : "red" }}> Out Of Stock </p>
+                        <h2 className="my-2"> <strong>Category  :- </strong> {categoryName}</h2>
+                        <h2 className="my-4"> <strong>Description  :- </strong> {product.description}</h2>
+                        {/* <p className="my-2" style={{ color: product.inStock ? "white" : "red" }}> Out Of Stock </p> */}
 
                         <div>
                             {

@@ -1,6 +1,5 @@
 import { v2 as cloudinary } from "cloudinary"
 import "dotenv/config"
-import { upload } from "./multer.js";
 
 async function uploadToCloudinary(req) {
     console.log("req file path", req.file.path);
@@ -15,8 +14,8 @@ async function uploadToCloudinary(req) {
     try {
         // upload an image
 
-        const uploadResult = await cloudinary.uploader.
-            upload(req.file.path, {
+        const uploadResult = await cloudinary.uploader
+            .upload(req.file.path, {
                 folder: "ecommerce",
             })
         console.log(uploadResult);

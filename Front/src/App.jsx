@@ -10,7 +10,7 @@ import AddProduct from "./admin/AddProduct"
 import Register from "./Pages/Register"
 import Login from "./Pages/Login"
 import AuthProvider from "./context/AuthProvider"
-// import ProtectedRoute from "./context/ProtectedRoute"
+import ProtectedRoute from "./context/ProtectedRoute"
 import AdminLogin from "./admin/AdminLogin"
 import AddCategory from "./admin/AddCategory"
 
@@ -53,8 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/addproduct",
-        // element:<ProtectedRoute><AddProduct /></ProtectedRoute> 
-        element:<AddProduct />
+        element:<ProtectedRoute><AddProduct /></ProtectedRoute> 
       },
       {
         path: "/admin/addcategory",

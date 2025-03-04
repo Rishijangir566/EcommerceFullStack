@@ -6,7 +6,7 @@ const ProductRouter = express.Router();
 
 ProductRouter.post("/add", upload.single("image"), addToProduct)
 ProductRouter.get("/get", fetchProducts)
-ProductRouter.get("/product/:id", fetchProducts)
+ProductRouter.get("/get/:id", fetchProducts)
 ProductRouter.get("/category", fetchCategories)
 ProductRouter.post("/category/add", upload.single("image"), addCategory)
 

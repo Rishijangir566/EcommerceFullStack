@@ -1,0 +1,180 @@
+[{
+  "_id": {
+    "$oid": "67c59e07e4897fe068dc5560"
+  },
+  "title": "Laptop",
+  "brand": "Dell",
+  "category": {
+    "$oid": "67c5846382ff318aa5c8a14d"
+  },
+  "description":"A laptop is a portable personal computer designed for convenience and mobility. It features an integrated screen, keyboard, touchpad (or pointing device), and a rechargeable battery, allowing users to work or browse the internet without needing to be plugged in continuously.",
+  "usualPrice": 1234,
+  "discountPrice": 1199,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004294/ecommerce/ugvysqgdskadzwkoupqj.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c59e39e4897fe068dc5562"
+  },
+  "title": "Mobile",
+  "brand": "Apple",
+  "category": {
+    "$oid": "67c5846382ff318aa5c8a14d"
+  },
+  "description":"Apple mobile phones, known as iPhones, are premium smartphones featuring sleek designs, powerful processors, advanced cameras, and seamless integration with the iOS ecosystem. They offer high security, smooth performance, and exclusive features like Face ID, iCloud, and the App Store.",
+  "usualPrice": 565,
+  "discountPrice": 344,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004344/ecommerce/s74npimwrquykcyowv9e.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c59e69e4897fe068dc5564"
+  },
+  "title": "Double Bed",
+  "brand": "Sunstar",
+  "category": {
+    "$oid": "67c584c382ff318aa5c8a153"
+  },
+  "description":"A double bed is a medium-sized bed designed for two people, offering a comfortable sleeping space. It typically measures 54 inches wide by 75 inches long and is ideal for couples or individuals who prefer extra room.",
+  "usualPrice": 354,
+  "discountPrice": 235,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004392/ecommerce/nq6th3ark60unqjwh5ng.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c59e8ce4897fe068dc5566"
+  },
+  "title": "Chairs",
+  "brand": "Sunstar",
+  "category": {
+    "$oid": "67c584c382ff318aa5c8a153"
+  },
+  "description":"A chair is a piece of furniture designed for sitting, typically featuring a seat, backrest, and four legs. It comes in various styles, materials, and designs for different uses, including office, dining, and lounge seating.",
+  "usualPrice": 232,
+  "discountPrice": 120,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004427/ecommerce/cvaf9p8vr1wztxycxxqx.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6774ff560eff77824d532"
+  },
+  "title": "Shoes",
+  "brand": "Nike",
+  "category": {
+    "$oid": "67c5849982ff318aa5c8a151"
+  },
+  "usualPrice": 12,
+  "discountPrice": 11,
+  "discription": "Nike shoes offer a perfect blend of style, comfort, and performance, designed for athletes and casual wearers alike. With innovative technology and sleek designs, they provide superior cushioning, durability, and support for every step.",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741059918/ecommerce/vugjxohgea2ulmclmoft.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c67d0faa0640c4f22d7a5c"
+  },
+  "title": "Soffa",
+  "brand": "Wetus",
+  "category": {
+    "$oid": "67c584c382ff318aa5c8a153"
+  },
+  "description":"A sofa is a comfortable, upholstered seating piece designed for multiple people, commonly found in living rooms. It comes in various styles, materials, and sizes, offering both functionality and aesthetic appeal.",
+  "usualPrice": 200,
+  "discountPrice": 188,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741061390/ecommerce/us7bxvel370tb5ceeg8b.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c687d039255c3d546476f4"
+  },
+  "title": "DairyMilk",
+  "brand": "Chocolate",
+  "category": {
+    "$oid": "67c5836182ff318aa5c8a14b"
+  },
+  "description":"Dairy Milk is a rich and creamy chocolate made from high-quality milk and cocoa, offering a smooth and delicious taste. It is a popular treat enjoyed by all ages for its melt-in-the-mouth texture and sweet flavor.",
+  "usualPrice": 20,
+  "discountPrice": 15,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741064143/ecommerce/qdrgdicvfzzlq2t3xvng.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6884e39255c3d546476f8"
+  },
+  "title": "Kitkat",
+  "brand": "Chocolate",
+  "category": {
+    "$oid": "67c5836182ff318aa5c8a14b"
+  },
+  "description":"Chocolate is a sweet, rich treat made from cocoa beans, often mixed with milk and sugar. It comes in various forms like dark, milk, and white chocolate, enjoyed in bars, desserts, and beverages.",
+  "usualPrice": 9,
+  "discountPrice": 8,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741064269/ecommerce/mqvosdgndvlyakjm7sq3.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c688d939255c3d54647703"
+  },
+  "title": "Sliper",
+  "brand": "Paragon",
+  "category": {
+    "$oid": "67c5849982ff318aa5c8a151"
+  },
+  "description":"A slipper is a lightweight, comfortable footwear designed for indoor use, providing warmth and ease of movement. It typically features a soft sole and cozy materials like fabric, wool, or foam for added comfort.",
+  "usualPrice": 18,
+  "discountPrice": 16,
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741064408/ecommerce/j8hxwfmfgcavxzqhk4hf.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6a7f121a6791509fa596a"
+  },
+  "title": "Earphone",
+  "brand": "Boat",
+  "category": {
+    "$oid": "67c5846382ff318aa5c8a14d"
+  },
+  "usualPrice": 133,
+  "discountPrice": 121,
+  "description": "Earphones are small, lightweight audio devices designed to fit in or around the ears for private listening. They provide clear sound quality and often feature wired or wireless connectivity, noise cancellation, and built-in microphones for calls.",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741072369/ecommerce/ol5pduvu8f6j878qzuie.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6a88321a6791509fa5972"
+  },
+  "title": "Rasgula",
+  "brand": "Bikaji",
+  "category": {
+    "$oid": "67c5836182ff318aa5c8a14b"
+  },
+  "usualPrice": 10,
+  "discountPrice": 10,
+  "description": "Bikaji Rasgulla is a soft, spongy, and juicy Indian dessert made from chhena (cottage cheese) and soaked in light sugar syrup. It offers a delightful melt-in-the-mouth experience with a perfect balance of sweetness.",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741072514/ecommerce/zus9cytnvnjrxt0sqadx.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6a91e21a6791509fa5974"
+  },
+  "title": "Slipper",
+  "brand": "Bhahmas",
+  "category": {
+    "$oid": "67c5849982ff318aa5c8a151"
+  },
+  "usualPrice": 20,
+  "discountPrice": 17,
+  "description": "Bahamas slippers are stylish, lightweight, and comfortable footwear designed for casual wear. They feature a soft sole and breathable materials, perfect for beach outings or everyday use.",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741072670/ecommerce/vu0iosnx1jg9ubivx83o.webp",
+  "__v": 0
+}]
