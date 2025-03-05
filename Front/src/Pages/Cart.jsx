@@ -12,20 +12,22 @@ function Cart() {
         if (cart) {
             setTotalPrice(
                 cart.reduce((acc, cur) => {
-                    return acc + cur.product.price * cur.quantity
+                    return acc + cur.product.discountPrice * cur.quantity
                 }, 0)
             )
         }
     }, [totalPrice, cart])
 
-    console.log(cart);
+    // console.log(cart);
+
+    
 
     return (
         <>
             <div className="flex ">
 
 
-                <div className=" w-[60rem]  m-4">
+                <div className=" w-[80%] flex-wrap flex  m-4">
 
                     {cart.length === 0 ? (
                         <div>
@@ -34,14 +36,14 @@ function Cart() {
                         </div>
                     ) : (
                         cart.map((item) => {
-                            return <div key={item.product._id} className="flex   border">
-                                <img className="w-[20rem] h-[20rem] object-contain p-4" src={item.product.url} />
-                                <div>
-                                    <h2 className="mt-12"> <strong>Name :- </strong> {item.product.name}</h2>
-                                    <p className="my-2">  <strong> Rating  :- </strong> {item.product.totalRating}</p>
-                                    <h2 className="my-2"> <strong>Price  :- </strong> {item.product.price}</h2>
+                            return <div key={item.product._id} className="flex w-[45%] m-4 border">
+                                <img className="w-[10rem] h-[13rem] object-contain p-4" src={item.product.image} />
+                                <div className="mx-4 ">
+                                    <h2 className="mt-4"> <strong>Name :- </strong> {item.product.title}</h2>
+                                    <p className="my-2">  <strong> DiscountPrice  :- </strong> {item.product.discountPrice}</p>
+                                    <h2 className="my-2"> <strong>Price  :- </strong> {item.product.usualPrice}</h2>
                                     <h2 className="my-2"> <strong>Brand  :- </strong> {item.product.brand}</h2>
-                                    <h2 className="my-2"> <strong>Description  :- </strong> {item.product.description}</h2>
+                                    {/* <h2 className="my-2"> <strong>Description  :- </strong> {item.product.description}</h2> */}
                                     <div className="flex text-2xl">
                                         {
                                             item.quantity === 1 ? (
@@ -59,10 +61,10 @@ function Cart() {
                     )}
 
                 </div>
-                <div className="mx-16 mt-8">
+                <div className="mx-16 mt-8 bg-amber-500 rounded-2xl h-[8rem] pt-3 text-center w-[30%]">
                     <h2 className="text-2xl"> <strong>Order Summary </strong>  </h2>
-                    <div className="flex">
-                        <p> Item : </p>
+                    <div className="flex justify-center m-4 text-2xl">
+                        <h2><strong>Item : </strong> </h2>
                         <p>{totalPrice} </p>
                     </div>
                 </div>

@@ -23,11 +23,7 @@ export async function check(req, res, next) {
     req.user = user;
     next()
 
-
-
 }
-
-
 
 
 export async function checkAdmin(req, res, next) {

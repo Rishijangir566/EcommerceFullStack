@@ -4,6 +4,7 @@ import instance from "../axiosConfig"
 import { useAuth } from "../context/AuthProvider"
 
 function Login() {
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         email: "",
@@ -11,7 +12,6 @@ function Login() {
     })
 
     const { checkAuth } = useAuth();
-    const navigate = useNavigate();
 
     function handlechange(e) {
         const { name, value } = e.target
@@ -26,7 +26,18 @@ function Login() {
             const response = await instance.post("/user/login", data, { withCredentials: true })
             console.log(response.data);
             checkAuth()
-            if (response.status === 200 && response.data.message === "Login Successful"){ navigate("/")} 
+            if (response.status === 200 && response.data.message === "Login Successful"){ 
+               
+                const searchParams = new URLSearchParams(window.location.search)
+                const URLParams = searchParams.get("referer")
+                if(URLParams && URLParams.trim() !==""){
+                    window.location.href=URLParams;
+                }
+                else{
+                    navigate("/")
+                }
+            
+            } 
                
             // window.location.href("/")
         } catch (error) {

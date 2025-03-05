@@ -15,10 +15,10 @@ import adminRouter from "./Routes/adminRouter.js";
 
 const app = express();
 const port = process.env.PORT;
-const corsOptions={
- origin:process.env.FRONTEND_URI,
- credentials:true,
- methods :["GET","POST","PUT","DELETE","OPTIONS"]
+const corsOptions = {
+    origin: process.env.FRONTEND_URI,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
 }
 
 app.use(express.json());
@@ -31,7 +31,7 @@ app.use("/api/product", ProductRouter);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/deals", dealRouter)
-app.use("/api/admin" , adminRouter)
+app.use("/api/admin", adminRouter)
 connectDB();
 
 app.listen(port, () => {

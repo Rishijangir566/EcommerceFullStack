@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState } from "react"
 import instance from "../axiosConfig"
 // import { useParams } from "react-router-dom";
@@ -66,13 +67,14 @@ function EcomContext({ children }) {
 
 
 
-    function addToCart(product) {
+   function addToCart(product) {
 
         if (existsInCart(product._id)) {
             setCart(
                 cart.map((cartItem) =>
                     cartItem._id === product._id ? { ...cartItem, quantity: Number(cartItem.quantity) + 1 } : cartItem
                 ))
+              
         }
         else {
             const obj = { product, quantity: 1 }

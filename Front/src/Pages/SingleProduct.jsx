@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import instance from "../axiosConfig"
 import { ecomcontext } from "../context/EcomContext"
 import DisplayProduct from "../Components/DisplayProduct"
+import { useAuth } from "../context/AuthProvider"
 
 function SingleProduct() {
     const { addToCart, existsInCart, removeFromCart, filterByCategory, productByCat, categories } = useContext(ecomcontext)
+
+  const {isUserLoggedIn}=useAuth()
+  const navigate = useNavigate()
     const { id } = useParams()
     const [product, setProdct] = useState([])
     const [loading, setLoading] = useState(true)
@@ -16,17 +20,16 @@ function SingleProduct() {
         }
         if (product.category) {
             setCategoryName(
-                categories.find((obj)=>{
-                    return obj._id=== product.category;
+                categories.find((obj) => {
+                    return obj._id === product.category;
                 }).name
             )
-            filterByCategory(product.category)
         }
     }, [id, product.category])
 
-    useEffect(()=>{
+    useEffect(() => {
         filterByCategory(categoryName);
-    },[categoryName])
+    }, [categoryName])
 
 
 
@@ -40,6 +43,15 @@ function SingleProduct() {
             console.log(error);
         } finally {
             setLoading(false)
+        }
+    }
+
+    function userCartAuthentication(){
+        if(isUserLoggedIn){
+            addToCart(product)
+        } 
+        else{
+            navigate("/user/login/?referer="+ window.location.href)
         }
     }
 
@@ -66,7 +78,7 @@ function SingleProduct() {
 
                                     <button className="py-1 px-4  rounded bg-red-500 mr-4 hover:bg-cyan-200" onClick={() => removeFromCart(product._id)}> Remove From Cart</button>
                                 ) : (
-                                    <button className="py-1 px-4  rounded bg-cyan-500 mr-4 hover:bg-cyan-200" onClick={() => addToCart(product)}> Add To Cart</button>
+                                    <button className="py-1 px-4  rounded bg-cyan-500 mr-4 hover:bg-cyan-200" onClick={userCartAuthentication}> Add To Cart</button>
                                 )
                             }
                             <button className="py-1 px-4  rounded bg-amber-300 "> Add To Wishlist</button>

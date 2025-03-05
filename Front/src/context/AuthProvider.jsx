@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react"
 import instance from "../axiosConfig"
 
@@ -24,9 +25,7 @@ function AuthProvider({ children }) {
 
     async function checkAuthAdmin() {
         try {
-            await instance.get("/admin/check", {
-                withCredentials: true,
-            })
+            await instance.get("/admin/check", {withCredentials: true,})
             setAdminLoggedIn(true)
         } catch (error) {
             console.log(error);

@@ -1,7 +1,8 @@
-import { Children, useEffect, useState } from "react"
+/* eslint-disable react/prop-types */
+import {useEffect, useState } from "react"
 import instance from "../axiosConfig"
 
-function ProtectedRoute() {
+function ProtectedRoute({children}) {
   const [allowed, setAllowed] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -12,7 +13,7 @@ function ProtectedRoute() {
   async function fetchAllowedStatus() {
     try {
       setLoading(true)
-      await instance.get("/get/check", { withCredentials: true });
+      await instance.get("/admin/check", { withCredentials: true });
       setAllowed(true)
     } catch (error) {
       console.log(error);
@@ -25,7 +26,7 @@ function ProtectedRoute() {
 
   if (loading) return <div>Loading ... </div>
 
-  return allowed ? Children : (window.location.href = "/admin/login")
+  return allowed ? children : (window.location.href = "/admin/login")
 
 }
 

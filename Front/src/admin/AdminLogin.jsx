@@ -10,7 +10,7 @@ function AdminLogin() {
         password: ""
     })
 
-    const { checkAuthAdmin} = useAuth();
+    const { checkAuthAdmin } = useAuth();
     const navigate = useNavigate();
 
     function handlechange(e) {
@@ -26,12 +26,12 @@ function AdminLogin() {
             const response = await instance.post("/admin/login", data, { withCredentials: true })
             console.log(response.data);
             checkAuthAdmin();
-            if (response.status === 200 && response.data.message === "Admin Login Successful") { navigate("/")}
-               
-            // window.location.href("/")
+            if (response.status === 200 && response.data.message === "Admin Login Successful") 
+                {window.location.href("/admin/addProduct")}
+                // { navigate("/admin/addProduct") }
+
         } catch (error) {
             console.log(error);
-
         }
     }
 
@@ -61,7 +61,7 @@ function AdminLogin() {
                     <button type="submit" className="bg-green-300 py-1 my-8 rounded text-xl font-bold"> Login</button>
                 </form>
             </div>
-            
+
         </>
     )
 }
