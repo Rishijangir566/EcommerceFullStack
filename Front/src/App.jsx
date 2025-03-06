@@ -13,6 +13,7 @@ import AuthProvider from "./context/AuthProvider"
 import ProtectedRoute from "./context/ProtectedRoute"
 import AdminLogin from "./admin/AdminLogin"
 import AddCategory from "./admin/AddCategory"
+import DisplayHotDeals from "./Components/DisplayHotDeals"
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,10 @@ const router = createBrowserRouter([
 
       {
         path: "/cart",
-        element: <Cart />
+        element:(
+        <ProtectedRoute >
+          <Cart destination="user/login" />
+          </ProtectedRoute> )
       },
 
       {
@@ -53,11 +57,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/addproduct",
-        element:<ProtectedRoute><AddProduct /></ProtectedRoute> 
+        element:(
+        <ProtectedRoute>
+          <AddProduct destination="admin/login" />
+          </ProtectedRoute> )
       },
       {
         path: "/admin/addcategory",
         element:<AddCategory />
+      },
+      {
+        path: "/hotDeals",
+        element:<DisplayHotDeals />
       }
     ],
   },

@@ -8,6 +8,7 @@ import userRouter from "./Routes/userRouter.js";
 import authRouter from "./Routes/authRouter.js";
 import dealRouter from "./Routes/dealRouter.js";
 import adminRouter from "./Routes/adminRouter.js";
+import cartRouter from "./Routes/cartRouter.js";
 
 
 
@@ -32,6 +33,7 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/deals", dealRouter)
 app.use("/api/admin", adminRouter)
+app.use("/api/cart", cartRouter)
 connectDB();
 
 app.listen(port, () => {

@@ -66,7 +66,7 @@ function SingleProduct() {
                     <div className="text-xl font-medium">
                         <h2 className="my-2"> <strong>Name :- </strong> {product.title}</h2>
                         {/* <p className="my-2">  <strong> Rating  :- </strong> {product.totalRating}</p> */}
-                        <h2 className="my-2"> <strong>Price  :- </strong> {product.usualPrice}</h2>
+                        <h2 className="my-2"> <strong>Price  :- </strong> {product.discountPrice}</h2>
                         <h2 className="my-2"> <strong>Brand  :- </strong> {product.brand}</h2>
                         <h2 className="my-2"> <strong>Category  :- </strong> {categoryName}</h2>
                         <h2 className="my-4"> <strong>Description  :- </strong> {product.description}</h2>

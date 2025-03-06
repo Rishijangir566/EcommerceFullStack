@@ -18,7 +18,7 @@ function EcomContext({ children }) {
         try {
             setLoading(true)
             // const response = await instance.get("/product")
-            const response = await instance.get("/product/get",{withCredentials:true})
+            const response = await instance.get("/product/get", { withCredentials: true })
             // console.log(response.data);
             setProducts(response.data)
         } catch (error) {
@@ -67,14 +67,14 @@ function EcomContext({ children }) {
 
 
 
-   function addToCart(product) {
+    function addToCart(product) {
 
         if (existsInCart(product._id)) {
             setCart(
                 cart.map((cartItem) =>
                     cartItem._id === product._id ? { ...cartItem, quantity: Number(cartItem.quantity) + 1 } : cartItem
                 ))
-              
+
         }
         else {
             const obj = { product, quantity: 1 }
@@ -82,7 +82,7 @@ function EcomContext({ children }) {
         }
     }
 
-    
+
     function updateQuantity(productId, sign) {
 
         if (!existsInCart(productId)) {
@@ -111,15 +111,15 @@ function EcomContext({ children }) {
         return productAlreadyExists ? true : false
     }
 
-   async function fetchHotDeals(){
-    try{
-        const response=await instance.get("/deals" ,{withCredentials:true})
-      setDealProducts(response.data)
-    }catch(error){
-        console.log(error);
-        
+    async function fetchHotDeals() {
+        try {
+            const response = await instance.get("/deals", { withCredentials: true })
+            setDealProducts(response.data)
+        } catch (error) {
+            console.log(error);
+
+        }
     }
-   }
 
 
     return (

@@ -27,7 +27,7 @@ function AdminLogin() {
             console.log(response.data);
             checkAuthAdmin();
             if (response.status === 200 && response.data.message === "Admin Login Successful") 
-                {window.location.href("/admin/addProduct")}
+                {window.location.href="/admin/addProduct"}
                 // { navigate("/admin/addProduct") }
 
         } catch (error) {

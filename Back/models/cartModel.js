@@ -1,4 +1,5 @@
-import mongoose, { Schema } from "mongoose";
+import  { Schema ,model} from "mongoose";
+// import mongoose from "mongoose";
 
 const cartItemSchema = new Schema({
     product:{
@@ -12,7 +13,7 @@ const cartItemSchema = new Schema({
         min:1
     },
     attributes:{
-        type:map,
+        type:Map,
         of:String
     }
 })

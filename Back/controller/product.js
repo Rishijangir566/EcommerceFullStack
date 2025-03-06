@@ -72,7 +72,7 @@ export async function addCategory(req, res) {
 export async function hotDeals(req, res) {
     try {
         const hotDeals = await ProductModelData.find({
-            discountPrice: { $gte: 300 }
+            discountPrice: { $gt: 10 }  // gt = greaterthan & gte greaterthan equal to 
         })
         console.log(hotDeals);
         res.status(200).json(hotDeals)
