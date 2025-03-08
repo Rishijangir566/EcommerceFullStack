@@ -18,10 +18,10 @@ export async function fetchCart(req, res) {
 }
 export async function addToCart(req, res) {
     try {
-        const userId = req.User._id;
-        const {product, quantity,user,items } = req.body;
+        const userId = req.user._id;
+        const {product, quantity ,items , user} = req.body;
 
-        let cart = await cartModel.findOne({ user: userId })
+        let cart = await cartModel.findOne({ user: userId})
 
         if (!cart) {
             cart = new cartModel({ user: userId, items: [] })

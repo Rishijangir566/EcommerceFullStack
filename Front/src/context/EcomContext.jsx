@@ -90,12 +90,21 @@ function EcomContext({ children }) {
     }
 
 
-    function updateQuantity(productId, sign) {
+    async function updateQuantity(productId, sign) {
 
-        if (!existsInCart(productId)) {
-            console.log("Incorrect Id");
+        // if (!existsInCart(productId)) {
+        //     console.log("Incorrect Id");
 
-        }
+        // }
+     try{
+        const response = await instance.get("/cart",{withCredentials:true})
+        setCart(response.data)
+        console.log("hello data"+response.data);
+        
+     } catch(error){
+        console.log("no product added to cart", {message:error});
+        
+     }
 
         setCart(
             cart.map((cartItem) => cartItem.product._id === productId ?

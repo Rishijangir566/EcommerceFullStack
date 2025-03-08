@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/cart",
+        path: "/cart/fetchcart",
         element:(
         <ProtectedRoute >
           <Cart destination="user/login" />
