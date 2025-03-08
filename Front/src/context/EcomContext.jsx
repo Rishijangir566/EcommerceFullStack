@@ -65,21 +65,28 @@ function EcomContext({ children }) {
 
 
 
+    async function addToCart(product) {
 
+        try {
+            const response = await instance.post("/cart/add", { product: product._id, quantity: 1 }, { withCredentials: true })
+            console.log("cart update", response.data);
 
-    function addToCart(product) {
-
-        if (existsInCart(product._id)) {
-            setCart(
-                cart.map((cartItem) =>
-                    cartItem._id === product._id ? { ...cartItem, quantity: Number(cartItem.quantity) + 1 } : cartItem
-                ))
+        } catch (error) {
+            console.log("product not added to cart", error);
 
         }
-        else {
-            const obj = { product, quantity: 1 }
-            setCart([...cart, obj])
-        }
+
+        // if (existsInCart(product._id)) {
+        //     setCart(
+        //         cart.map((cartItem) =>
+        //             cartItem._id === product._id ? { ...cartItem, quantity: Number(cartItem.quantity) + 1 } : cartItem
+        //         ))
+
+        // }
+        // else {
+        //     const obj = { product, quantity: 1 }
+        //     setCart([...cart, obj])
+        // }
     }
 
 

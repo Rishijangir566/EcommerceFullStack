@@ -8,8 +8,8 @@ import { useAuth } from "../context/AuthProvider"
 function SingleProduct() {
     const { addToCart, existsInCart, removeFromCart, filterByCategory, productByCat, categories } = useContext(ecomcontext)
 
-  const {isUserLoggedIn}=useAuth()
-  const navigate = useNavigate()
+    const { isUserLoggedIn } = useAuth()
+    const navigate = useNavigate()
     const { id } = useParams()
     const [product, setProdct] = useState([])
     const [loading, setLoading] = useState(true)
@@ -46,12 +46,12 @@ function SingleProduct() {
         }
     }
 
-    function userCartAuthentication(){
-        if(isUserLoggedIn){
+    function userCartAuthentication() {
+        if (isUserLoggedIn) {
             addToCart(product)
-        } 
-        else{
-            navigate("/user/login/?referer="+ window.location.href)
+        }
+        else {
+            navigate("/user/login/?referer=" + window.location.href)
         }
     }
 

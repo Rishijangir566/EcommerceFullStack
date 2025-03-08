@@ -3,6 +3,7 @@ import User from "../models/userModel.js"
 import "dotenv/config"
 import Admin from "../models/adminModel.js";
 
+// user login auth check
 export async function check(req, res, next) {
     console.log("cookie", req.cookies);
 
@@ -25,7 +26,7 @@ export async function check(req, res, next) {
 
 }
 
-
+// admin login auth check
 export async function checkAdmin(req, res, next) {
     console.log("cookie", req.cookies);
 

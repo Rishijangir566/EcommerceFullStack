@@ -18,7 +18,7 @@ function DisplayProduct({ product }) {
                         
                             <h2 className="mt-4 font-medium  ">
                                 <span className=' font-bold w-[8rem]'> {item.brand + " :"} </span>
-                                {item.title} </h2>
+                                {item.title.split(" ").slice(0,2).join(" ") + "..." } </h2>
                                 {/* .split(" ").slice(0, 3).join(" ") + "..."  */}
                             {/* <p className=" my-1"><span className='text-red-700 font-bold' > Discounted Price :</span> $ {item.discountPrice}</p> */}
                         <p className=" my-1 font-bold  ">  Price : $  {item.discountPrice+"  "}<s><span className='font-light text-red-500 text-sm'> {item.usualPrice} </span></s>  </p>

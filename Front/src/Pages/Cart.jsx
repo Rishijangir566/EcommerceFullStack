@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 
 function Cart() {
-    const { cart, removeFromCart, updateQuantity } = useContext(ecomcontext)
+    const { cart, removeFromCart, updateQuantity,addToCart } = useContext(ecomcontext)
 
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -53,7 +53,10 @@ function Cart() {
                                             )
                                         }
                                         <p className="px-8 border  mx-1">{item.quantity}</p>
-                                        <p className="bg-yellow-300 px-2 cursor-pointer" onClick={() => updateQuantity(item.product._id, "+")} > + </p>
+                                        <p className="bg-yellow-300 px-2 cursor-pointer" 
+                                        // onClick={() => updateQuantity(item.product._id, "+")}
+                                        onClick={()=>addToCart(item.product)}
+                                         > + </p>
                                     </div>
                                 </div>
                             </div>

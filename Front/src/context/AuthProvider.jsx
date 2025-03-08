@@ -13,6 +13,8 @@ function AuthProvider({ children }) {
     }, [])
     console.log(isUserLoggedIn);
 
+    
+    // user login check
     async function checkAuth() {
         try {
             await instance.get("/auth/check", { withCredentials: true })
@@ -23,6 +25,7 @@ function AuthProvider({ children }) {
         }
     }
 
+    // admin login check
     async function checkAuthAdmin() {
         try {
             await instance.get("/admin/check", {withCredentials: true,})

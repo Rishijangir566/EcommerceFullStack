@@ -10,7 +10,7 @@ export async function registerUser(req, res) {
       const { name, email, password } = req.body;
       const hasedPassword = await bcrypt.hash(password, 10);
 
-      const newuser = new User({ name, email, password: hasedPassword })
+      const newuser = new User({ name, email, password: hasedPassword ,role:"user"})
       await newuser.save()
 
       res.status(200).send({ message: "User Registered", user: newuser })
