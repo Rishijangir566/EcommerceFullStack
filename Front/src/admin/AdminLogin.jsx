@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import instance from "../axiosConfig"
 import { useAuth } from "../context/AuthProvider"
 
@@ -11,7 +11,7 @@ function AdminLogin() {
     })
 
     const { checkAuthAdmin } = useAuth();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     function handlechange(e) {
         const { name, value } = e.target
@@ -27,7 +27,7 @@ function AdminLogin() {
             console.log(response.data);
             checkAuthAdmin();
             if (response.status === 200 && response.data.message === "Admin Login Successful") 
-                {window.location.href="/admin/addProduct"}
+                {window.location.href="/admin/home"}
                 // { navigate("/admin/addProduct") }
 
         } catch (error) {

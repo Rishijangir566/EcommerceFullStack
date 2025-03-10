@@ -13,7 +13,10 @@ import AuthProvider from "./context/AuthProvider"
 import ProtectedRoute from "./context/ProtectedRoute"
 import AdminLogin from "./admin/AdminLogin"
 import AddCategory from "./admin/AddCategory"
+
 import DisplayHotDeals from "./Components/DisplayHotDeals"
+import AdminHome from "./admin/AdminHome"
+import AdminProducts from "./admin/AdminProducts"
 
 const router = createBrowserRouter([
   {
@@ -41,10 +44,6 @@ const router = createBrowserRouter([
         path: "/user/login",
         element: <Login />
       },
-      {
-        path: "/admin/login",
-        element: <AdminLogin/>
-      },
       
       {
         path: "/product/:id",
@@ -56,15 +55,37 @@ const router = createBrowserRouter([
         element: <ShopByCategory />
       },
       {
+        path: "/admin/login",
+        element: <AdminLogin/>
+      },
+      {
         path: "/admin/addproduct",
         element:(
         <ProtectedRoute>
-          <AddProduct destination="admin/login" />
+          <AddProduct fallback="admin/login" />
           </ProtectedRoute> )
       },
       {
         path: "/admin/addcategory",
         element:<AddCategory />
+      },
+      {
+        path: "/admin",
+        element:<AdminLogin />
+      },
+      {
+        path: "/admin/home",
+        element:(
+        <ProtectedRoute>
+          <AdminHome fallback="admin/login" />
+          </ProtectedRoute> )
+      },
+      {
+        path: "/admin/products",
+        element:(
+        <ProtectedRoute>
+          <AdminProducts fallback="admin/login" />
+          </ProtectedRoute> )
       },
       {
         path: "/hotDeals",
