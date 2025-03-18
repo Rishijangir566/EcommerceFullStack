@@ -1,18 +1,22 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
+// import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom'
+// import { ecomcontext } from '../context/EcomContext';
 
 function DisplayProduct({ product }) {
     console.log(product);
-    
+      
     
     return (
 
-        <div className="flex justify-evenly gap-12 flex-wrap my-12 ">
+   
+
+        <div className="flex justify-center gap-12 flex-wrap my-12  ">
 
             {
-                product.length > 0 ? (
-                    product.map((item) => {
+                product?.products?.length > 0 ? (
+                    product?.products?.map((item) => {
                         return <div key={item._id} className=" mx-8 w-[12rem] h-[20rem] ">
                             <Link to={`/product/${item._id}`}> <img className="object-contain w-[12rem] h-[12rem]  " src={item.image} /> </Link>
                         
@@ -22,13 +26,14 @@ function DisplayProduct({ product }) {
                                 {/* .split(" ").slice(0, 3).join(" ") + "..."  */}
                             {/* <p className=" my-1"><span className='text-red-700 font-bold' > Discounted Price :</span> $ {item.discountPrice}</p> */}
                         <p className=" my-1 font-bold  ">  Price : $  {item.discountPrice+"  "}<s><span className='font-light text-red-500 text-sm'> {item.usualPrice} </span></s>  </p>
-                            <Link to={`/product/${item._id} `}><button className="py-1 w-[12rem] border rounded" >Add To Cart</button></Link>
+                            <button className="py-1 w-[12rem] border rounded" >Add To Wishlist</button>
    
                         </div>
                     })
                 ) : ""
             }
         </div>
+        
     )
 }
 

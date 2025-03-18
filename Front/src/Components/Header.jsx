@@ -1,30 +1,32 @@
 import { Link, NavLink } from "react-router-dom"
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ecomcontext } from "../context/EcomContext";
 import { useAuth } from "../context/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+
 
 function Header() {
-  const { cart, categories, fetchCategory } = useContext(ecomcontext)
+  const { cart, } = useContext(ecomcontext)
   const { isUserLoggedIn, logout, isAdminLoggedIn } = useAuth()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  // const [dropdownOpen, setDropdownOpen] = useState(false)
 
 
 
-  useEffect(() => {
-    fetchCategory()
-  }, [])
+  // useEffect(() => {
+  //   fetchCategory()
+  // }, [])
 
   return (
     <header className="flex justify-between px-12 py-2 bg-green-300">
       <Link to="/"> <h2 className="text-2xl font-bold">Ecommerce</h2></Link>
       <nav>
-        <ul className="flex py-1 font-medium ">
+        <ul className="flex py-1 mx-4  font-medium ">
 
-          <li className="mx-4 text-red-900"><Link to="/hotDeals"> Hot Deals</Link> </li>
-          <li className="mx-4"><Link to="/">Home</Link> </li>
+          
+          <li className="mx-8"><Link to="/">Home</Link> </li>
 
 
-          <li>
+          {/* <li>
             <button
               id="dropdownDefaultButton"
               data-dropdown-toggle="dropdown"
@@ -79,7 +81,7 @@ function Header() {
             </div>
 
 
-          </li>
+          </li> */}
 
           {/* <li> <Link to="/register">Login</Link> </li> */}
           {isUserLoggedIn || isAdminLoggedIn ? (
@@ -92,7 +94,7 @@ function Header() {
             </li>
           )}
 
-          <li className="mx-4 relative"><Link to="/cart/fetchcart">Cart</Link> <span className="absolute top-[-5px] right-[-20px] text-white bg-red-500 rounded-full px-1.5  text-sm"> {cart.length}</span>
+          <li className="mx-8 relative"><Link to="/cart/fetchcart"> <FaShoppingCart className="text-xl mt-1"/></Link> <span className="absolute top-[-5px] right-[-20px] text-white bg-red-500 rounded-full px-1.5  text-sm"> {cart.length}</span>
           </li>
         </ul>
       </nav>

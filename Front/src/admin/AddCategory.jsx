@@ -1,13 +1,15 @@
-import { useState } from "react"
+import {   useState } from "react"
 import instance from "../axiosConfig";
+// import { ecomcontext } from "../context/EcomContext";
 
 function AddCategory() {
-
+//    const {categories}=useContext(ecomcontext)
     const [form, setForm] = useState({
         name: "",
         image: ""
     })
-
+    const [error, setError] = useState("");
+    
     function handleChange(e) {
         let { name, value } = e.target;
         if (name === "image") {
@@ -30,24 +32,47 @@ function AddCategory() {
 
         } catch (error) {
             console.log(error);
+            setError(error.message)
         }
     }
 
     return (
         <>
-            <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
-                <input type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="Enter Category"
-                />
-                <input type="file"
-                    name="image"
-                    onChange={handleChange}
-                />
-                <button type="submit">Submit</button>
-            </form>
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center py-4">
+        <div className="max-w-lg w-full space-y-8 p-8 bg-white rounded-lg shadow">
+          <h2 className="text-3xl font-bold text-center">Add Category</h2>
+          {error && <p className="text-red-500 text-center">{error}</p>}
+          <form
+            action=""
+            encType="multipart/form-data"
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-3 items-center justify-between space-y-6"
+          >
+            <input
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter the name"
+              autoFocus
+            />
+            <input
+              type="file"
+              name="image"
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            />
+
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
         </>
     )
 }

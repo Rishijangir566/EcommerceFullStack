@@ -15,6 +15,8 @@ function AddProduct() {
         description: "",
         image: ""
     })
+    const [error, setError] = useState("");
+
 
     function handleChange(e) {
         if (e.target.name === "image")
@@ -52,64 +54,128 @@ function AddProduct() {
             console.log(response);
         } catch (error) {
             console.log(error);
+            setError(error.message)
         }
     }
 
     return (
 
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <input type="text" className="border" name="title"
-                placeholder="Enter Product Title"
-                value={form.title} onChange={handleChange} />
-
-            <input type="text" className="border" name="brand"
-                placeholder="Enter Product Brand"
-                value={form.brand} onChange={handleChange} />
-
-            <select name="category" id=""
-                value={form.category} onChange={handleChange}>
-                <option value="" selected disabled> Select Category</option>
-                {categories.map((category, index) => {
-                    return (
-                        <option value={category._id} key={index}>
-                            {category.name}
-                        </option>
-                    )
-                })}
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center py-4">
+        <div className="max-w-lg w-full space-y-8 p-8 bg-white rounded-lg shadow">
+          <h2 className="text-3xl font-bold text-center">Add Product</h2>
+          {error && <p className="text-red-500 text-center">{error}</p>}
+          <form
+            action=""
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            className="flex flex-col gap-3 items-center justify-between space-y-6"
+          >
+            <input
+              type="text"
+              placeholder="Enter Product Title"
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              autoFocus
+            />
+            <input
+              type="text"
+              placeholder="Enter Product Brand"
+              name="brand"
+              value={form.brand}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+            <select
+              name="category"
+              id=""
+              value={form.category}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="" selected disabled placeholder="Select Category">
+                Select Category
+              </option>
+              {categories?.category?.map((category, index) => {
+                return (
+                  <option value={category._id} key={index}>
+                    {category.name}
+                  </option>
+                );
+              })}
             </select>
-
-
-
-
-            <input type="text" className="border" name="usualPrice"
-                placeholder="Enter Product Usual Price"
-                value={form.usualPrice} onChange={handleChange} />
-
-            <select name="discountType" id=""
-                value={form.discountType} onChange={handleChange} required>
-                <option value="" selected disabled > Select</option>
-                <option value="%" selected> In Percentage</option>
-                <option value="inr" selected>In Rupee</option>
-            </select>
-
-            <input type="text" className="border" name="discount"
-                placeholder={form.discountType === "%" ? "discount in Percentage" : "discount in rupee"}
-                value={form.discount} onChange={handleChange}
-                onBlur={handleDiscountPriceChange} />
-
-            <input type="text" className="border" name="discountPrice"
-                placeholder="Enter Product Discounted Price"
-                value={form.discountPrice} onChange={handleChange} />
-
-            <input type="text" className="border" name="description"
-                placeholder="Enter Description"
-                value={form.description} onChange={handleChange} />
-
-            <input type="file" name="image" onChange={handleChange} />
-
-            <button type="submit"> Add Product </button>
-
-        </form>
+            <input
+              type="text"
+              placeholder="Enter Product Usual Price"
+              name="OriginalPrice"
+              value={form.usualPrice}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+  
+            <div className="flex gap-4">
+              <select
+                name="discountType"
+                id="discountType"
+                value={form.discountType}
+                onChange={handleChange}
+                className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              >
+                <option value="%">In Percentage</option>
+                <option value="inr">In Rupees</option>
+              </select>
+              <input
+                type="text"
+                name="discount"
+                placeholder={
+                  form.discountType === "%"
+                    ? "Discount in Percentage"
+                    : "Discount in Rupees"
+                }
+                value={form.discount}
+                onChange={handleChange}
+                onBlur={handleDiscountPriceChange}
+                className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <input
+              type="text"
+              placeholder="Enter Product Discounted Price"
+              name="discountedPrice"
+              value={form.discountPrice}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+  
+            <input
+              type="text"
+              placeholder="Enter Product Description"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+  
+            <input
+              type="file"
+              name="image"
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
+            
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     )
 }
 

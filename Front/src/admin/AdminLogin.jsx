@@ -9,6 +9,7 @@ function AdminLogin() {
         email: "",
         password: ""
     })
+    const [error, setError] = useState("");
 
     const { checkAuthAdmin } = useAuth();
     // const navigate = useNavigate();
@@ -32,6 +33,7 @@ function AdminLogin() {
 
         } catch (error) {
             console.log(error);
+            setError(error.message)
         }
     }
 
@@ -41,6 +43,7 @@ function AdminLogin() {
 
 
                 <h2 className="text-center my-4 text-3xl font-medium"> Registration Form</h2>
+                {error && <p className="text-red-500 text-center">{error}</p>}
                 <form action="" onSubmit={handleSubmit} className="flex-col flex">
                     <input
                         type="email"

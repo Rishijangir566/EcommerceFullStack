@@ -2,6 +2,8 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import Admin from "../models/adminModel.js";
 import "dotenv/config"
+import categoryModel from "../models/categoryModel.js";
+import Product from "../models/productModel.js";
 
 
 export async function loginAdmin(req, res) {
@@ -38,4 +40,20 @@ export async function loginAdmin(req, res) {
        return res.status(500).send({ message: "user Not login", Error: error.message })
     }
  
+ }
+
+ export async function count(req, res) {
+   const count = { categories: 0, orders: 0, products: 0, users: 0 };
+   try {
+     count.categories = await categoryModel.countDocuments();
+     // const orderCount = await Order.countDocuments();
+     count.products = await Product.countDocuments();
+     // const userCount = await User.countDocuments();
+ 
+     return res.send({count});
+   } catch (error) {
+     return res
+       .status(500)
+       .send({ message: "Unable to count numbers", errorString: error.message });
+   }
  }

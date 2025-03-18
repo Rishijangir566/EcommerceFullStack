@@ -7,20 +7,37 @@ export const ecomcontext = createContext();
 function EcomContext({ children }) {
 
     const [loading, setLoading] = useState(true)
-    const [products, setProducts] = useState([])
+    const [product, setProduct] = useState([])
     const [categories, setCategories] = useState([])
     const [productByCat, setProductByCat] = useState([])
-    // const [wishlist, setWishList] = useState([])
+    const [wishlist, setWishlist] = useState([])
     const [cart, setCart] = useState([])
     const [dealProducts, setDealProducts] = useState([])
+    const [count, setCount] = useState({
+        categories: 0,
+        orders: 0,
+        products: 0,
+        users: 0,
+      });
 
-    async function fetchProducts() {
+    async function fetchProducts(page = null) {
         try {
             setLoading(true)
             // const response = await instance.get("/product")
-            const response = await instance.get("/product/get", { withCredentials: true })
-            // console.log(response.data);
-            setProducts(response.data)
+            const response = await instance.get(page ? `/product/get?page=${page}` : `product/get`, { withCredentials: true })
+            setProduct(response.data)
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
+    }
+    async function fetchAllProducts() {
+        try {
+            setLoading(true)
+            // const response = await instance.get("/product")
+            const response = await instance.get("product/get?limit=-1", { withCredentials: true })
+            setProduct(response.data)
         } catch (error) {
             console.log(error);
         } finally {
@@ -35,8 +52,8 @@ function EcomContext({ children }) {
             setLoading(true)
             // const response = await instance.get(`/product/?category=${category}`)
             const response = await instance.get(`/product/get/?category=${category}`)
-            console.log(response.data);
-            setProductByCat(response.data)
+            // console.log(response.data.products);
+            setProductByCat(response.data.products)
         } catch (error) {
             console.log(error);
 
@@ -63,6 +80,27 @@ function EcomContext({ children }) {
     }
 
 
+    async function handleDelete(idToDelete, whatTodelete) {
+        try {
+            const response = await instance.delete(`/product/${idToDelete}`)
+            if (response.status === 200) {
+                window.location.href = whatTodelete === "product" ? "/admin/products" : "admin/categories"
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function getCount() {
+        try {
+          const response = await instance.get("/admin/count", {
+            withCredentials: true,
+          });
+          setCount(response.data.count);
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
 
     async function addToCart(product) {
@@ -92,19 +130,19 @@ function EcomContext({ children }) {
 
     async function updateQuantity(productId, sign) {
 
-        // if (!existsInCart(productId)) {
-        //     console.log("Incorrect Id");
+        if (!existsInCart(productId)) {
+            console.log("Incorrect Id");
 
-        // }
-     try{
-        const response = await instance.get("/cart",{withCredentials:true})
-        setCart(response.data)
-        console.log("hello data"+response.data);
-        
-     } catch(error){
-        console.log("no product added to cart", {message:error});
-        
-     }
+        }
+        //  try{
+        //     const response = await instance.get("/cart",{withCredentials:true})
+        //     setCart(response.data)
+        //     console.log("hello data"+response.data);
+
+        //  } catch(error){
+        //     console.log("no product added to cart", {message:error});
+
+        //  }
 
         setCart(
             cart.map((cartItem) => cartItem.product._id === productId ?
@@ -136,16 +174,37 @@ function EcomContext({ children }) {
 
         }
     }
+    function addToWishlist(product) {
+        if (existInWishlist(product._id)) {
+          alert("Already exist in wishlist");
+        } else {
+          const obj = { product };
+          setWishlist([...wishlist, obj]);
+        }
+      }
+      function existInWishlist(id) {
+        const productAlreadyExists = wishlist.find(
+          (wishlistItem) => wishlistItem.product._id === id
+        );
+        return productAlreadyExists ? true : false;
+      }
+    
+      // function to remove item from wishlist.
+      function removeFromWishlist(id) {
+        setWishlist(wishlist.filter((item) => item.product._id !== id));
+      }
 
 
     return (
         <ecomcontext.Provider value={{
             loading,
-            products,
+            product,
             cart,
             categories,
             productByCat,
             dealProducts,
+            count,
+            wishlist,
             updateQuantity,
             addToCart,
             removeFromCart,
@@ -153,7 +212,12 @@ function EcomContext({ children }) {
             fetchProducts,
             fetchCategory,
             filterByCategory,
-            fetchHotDeals
+            fetchHotDeals,
+            handleDelete,
+            fetchAllProducts,
+            removeFromWishlist,
+            addToWishlist,
+            getCount,
         }}>
 
             {children}
