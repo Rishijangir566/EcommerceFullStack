@@ -59,37 +59,14 @@ export async function fetchProducts(req, res) {
 export async function fetchCategories(req, res) {
 
     try {
-        let query = {};
-    
-        const page = req.query.page ? Number(req.query.page) : 1;
-        const limit = 10;
-        const skip = (page - 1) * limit;
-    
-        const category = await categoryModel.find(query).skip(skip).limit(limit);
-    
-        const totalCount = await categoryModel.countDocuments(query);
-    
-        if (!category)
-          return res.status(400).send({ message: "No Categories found" });
-    
-        res.send({
-          category,
-          currentPage: page,
-          totalPages: Math.ceil(totalCount / limit),
-        });
-      } catch (error) {
-        res.status(500).send({ message: error.message });
-      }
+        const category = await categoryModel.find({})
+        res.send(category)
     }
-//     try {
-//         const category = await categoryModel.find({})
-//         res.send(category)
-//     }
-//     catch (error) {
-//         console.log(error);
-//         res.status(500).send({ Error: error.message })
-//     }
-// }
+    catch (error) {
+        console.log(error);
+        res.status(500).send({ Error: error.message })
+    }
+}
 
 
 export async function addCategory(req, res) {

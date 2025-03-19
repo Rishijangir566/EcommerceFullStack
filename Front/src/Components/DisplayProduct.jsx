@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // import { ecomcontext } from '../context/EcomContext';
 
 function DisplayProduct({ product }) {
-    console.log(product);
+  
       
     
     return (

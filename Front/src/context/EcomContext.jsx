@@ -69,7 +69,6 @@ function EcomContext({ children }) {
             setLoading(true)
             // const response = await instance.get("/product/categories/all")
             const response = await instance.get("/product/category")
-            // console.log(response.data);
             setCategories(response.data)
         } catch (error) {
             console.log(error);
