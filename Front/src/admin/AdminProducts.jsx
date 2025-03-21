@@ -32,7 +32,7 @@ function AdminProducts() {
                     </li>
                 </ul>
             </aside>
-            <main className="w-4/5 p-4">
+            <main className="w-4/5 p-4 mt-12">
                 <h2>Products</h2>
                 <table className="w-full">
                     <thead>
@@ -44,10 +44,10 @@ function AdminProducts() {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody className="">
+                    <tbody className=" ">
                         {product?.products?.map((item, index) => {
                             return (
-                                <tr key={item._id} className={` ${index % 2 === 0 ? "bg-gray-200 my-2" : "bg-gray-300 my-2"
+                                <tr key={item._id} className={ `mb-2 ${index % 2 === 0 ? "bg-gray-200  " : "bg-gray-300 "
                                     }`}>
                                     <td>{item.title}</td>
                                     <td>{item.usualPrice}</td>

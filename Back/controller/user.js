@@ -41,7 +41,7 @@ export async function loginUser(req, res) {
          }
       );
 
-      console.log("loginToken", loginToken);
+      // console.log("loginToken", loginToken);
 
       res.cookie("loginToken", loginToken, {
          httpOnly: false,

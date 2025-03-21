@@ -4,6 +4,7 @@ import Admin from "../models/adminModel.js";
 import "dotenv/config"
 import categoryModel from "../models/categoryModel.js";
 import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 
 
 export async function loginAdmin(req, res) {
@@ -48,7 +49,7 @@ export async function loginAdmin(req, res) {
      count.categories = await categoryModel.countDocuments();
      // const orderCount = await Order.countDocuments();
      count.products = await Product.countDocuments();
-     // const userCount = await User.countDocuments();
+     count.users = await User.countDocuments();
  
      return res.send({count});
    } catch (error) {

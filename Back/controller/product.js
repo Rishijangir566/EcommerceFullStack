@@ -1,3 +1,4 @@
+import mongoose from "mongoose"
 import uploadToCloudinary from "../middlewares/cloudinary.js"
 import categoryModel from "../models/categoryModel.js"
 import ProductModelData from "../models/productModel.js"
@@ -7,7 +8,9 @@ export async function addToProduct(req, res) {
         const file = req.file
         if (!file) return res.status(404).send({ message: "file not found" })
         const secure_url = await uploadToCloudinary(req)
-        const newProduct = new ProductModelData({ ...req.body, image: secure_url })
+
+        const categoryObjectId = new mongoose.Types.ObjectId(req.body.category)
+        const newProduct = new ProductModelData({ ...req.body, image: secure_url, category: categoryObjectId })
         await newProduct.save()
         res.status(201).send({ message: "product Added" })
     } catch (error) {
@@ -25,14 +28,12 @@ export async function fetchProducts(req, res) {
         }
 
         if (req.query.category) {
-            const categoryId = await categoryModel.find({
-                name: { $regex: new RegExp(`^${req.query.category}$`, "i") }
-            })
-            query.category = categoryId;
+
+            query.category = new mongoose.Types.ObjectId(req.query.category);
         }
         // pagination use in backend 10 product and next 10 product show 
         const page = req.query.page ? Number(req.query.page) : 1;
-        const limit = Number(req.query.limit) === -1 ? 0 : 4;
+        const limit = Number(req.query.limit) === -1 ? 0 : 10;
         const skip = (page - 1) * limit;
 
         const products = await ProductModelData.find(query).skip(skip).limit(limit).populate("category");
@@ -71,7 +72,7 @@ export async function fetchCategories(req, res) {
 
 export async function addCategory(req, res) {
     try {
-        console.log(req.file);
+        // console.log(req.file);
         const file = req.file;
         if (!file) return res.status(404).send({ message: "file not found" })
 
@@ -90,9 +91,9 @@ export async function addCategory(req, res) {
 export async function hotDeals(req, res) {
     try {
         const hotDeals = await ProductModelData.find({
-            discountPrice: { $gt: 10 }  // gt = greaterthan & gte greaterthan equal to 
+            discountPrice: { $gte: 1000 }  // gt = greaterthan & gte greaterthan equal to 
         })
-        console.log(hotDeals);
+        // console.log(hotDeals);
         res.status(200).json(hotDeals)
 
     } catch (error) {

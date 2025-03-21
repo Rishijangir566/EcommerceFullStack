@@ -18,6 +18,8 @@ import DisplayHotDeals from "./Components/DisplayHotDeals"
 import AdminHome from "./admin/AdminHome"
 import AdminProducts from "./admin/AdminProducts"
 import AdminCategory from "./admin/AdminCategory"
+import AdminAuthProvider from "./admin/context/AdminAuthProvider"
+import AdminEcomProvider from "./admin/context/AdminEcomProvider"
 
 const router = createBrowserRouter([
   {
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
         element: <AdminLogin/>
       },
       {
-        path: "/admin/addproduct",
+        path: "/admin/addProduct",
         element:(
         <ProtectedRoute>
           <AddProduct fallback="admin/login" />
@@ -68,7 +70,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/addcategory",
-        element:<AddCategory />
+        // element:<AddCategory />
+        element:(
+          <ProtectedRoute>
+            <AddCategory fallback="admin/login" />
+            </ProtectedRoute> )
       },
       {
         path: "/admin",
@@ -104,11 +110,15 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
+    <AdminAuthProvider>
+      <AdminEcomProvider>
     <AuthProvider>   
     <EcomContext >
       <RouterProvider router={router} />
     </EcomContext>
     </AuthProvider>
+    </AdminEcomProvider>
+    </AdminAuthProvider>
   )
 }
 

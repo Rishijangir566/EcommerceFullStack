@@ -1,20 +1,24 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react"
-import instance from "../axiosConfig"
+import { createContext, useContext, useState } from "react"
+import instance from "../../axiosConfig"
 // import { useParams } from "react-router-dom";
 
-export const ecomcontext = createContext();
-function EcomContext({ children }) {
+ const AdminEcom = createContext();
+function AdminEcomProvider({ children }) {
 
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState([])
-    const [singleProduct, setSingleProduct] = useState([])
     const [categories, setCategories] = useState([])
     const [productByCat, setProductByCat] = useState([])
     const [wishlist, setWishlist] = useState([])
     const [cart, setCart] = useState([])
     const [dealProducts, setDealProducts] = useState([])
-
+    const [count, setCount] = useState({
+        categories: 0,
+        orders: 0,
+        products: 0,
+        users: 0,
+      });
 
     async function fetchProducts(page = null) {
         try {
@@ -34,22 +38,14 @@ function EcomContext({ children }) {
             setLoading(true)
             // const response = await instance.get("/product")
             const response = await instance.get("product/get?limit=-1", { withCredentials: true })
-            setProduct(response.data.products)
+            setProduct(response.data)
         } catch (error) {
             console.log(error);
         } finally {
             setLoading(false)
         }
     }
-    async function fetchSingleProducts(id) {
-        try {
-            const response = await instance.get(`product/get/${id}`)
-            setSingleProduct(response.data.products[0])
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
+    
 
 
 
@@ -76,7 +72,6 @@ function EcomContext({ children }) {
             setLoading(true)
             // const response = await instance.get("/product/categories/all")
             const response = await instance.get("/product/category")
-            // console.log(response.data)
             setCategories(response.data)
         } catch (error) {
             console.log(error);
@@ -85,8 +80,6 @@ function EcomContext({ children }) {
             setLoading(false)
         }
     }
-
-    // console.log(categories);
 
 
     async function handleDelete(idToDelete, whatTodelete) {
@@ -100,6 +93,16 @@ function EcomContext({ children }) {
         }
     }
 
+    async function getCount() {
+        try {
+          const response = await instance.get("/admin/count", {
+            withCredentials: true,
+          });
+          setCount(response.data.count);
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
 
     async function addToCart(product) {
@@ -123,7 +126,7 @@ function EcomContext({ children }) {
             console.log("Incorrect Id");
 
         }
-       
+        
 
         setCart(
             cart.map((cartItem) => cartItem.product._id === productId ?
@@ -157,36 +160,35 @@ function EcomContext({ children }) {
     }
     function addToWishlist(product) {
         if (existInWishlist(product._id)) {
-            alert("Already exist in wishlist");
+          alert("Already exist in wishlist");
         } else {
-            const obj = { product };
-            setWishlist([...wishlist, obj]);
+          const obj = { product };
+          setWishlist([...wishlist, obj]);
         }
-    }
-    function existInWishlist(id) {
+      }
+      function existInWishlist(id) {
         const productAlreadyExists = wishlist.find(
-            (wishlistItem) => wishlistItem.product._id === id
+          (wishlistItem) => wishlistItem.product._id === id
         );
         return productAlreadyExists ? true : false;
-    }
-
-    // function to remove item from wishlist.
-    function removeFromWishlist(id) {
+      }
+    
+      // function to remove item from wishlist.
+      function removeFromWishlist(id) {
         setWishlist(wishlist.filter((item) => item.product._id !== id));
-    }
+      }
 
 
     return (
-        <ecomcontext.Provider value={{
+        <AdminEcom.Provider value={{
             loading,
             product,
             cart,
             categories,
             productByCat,
             dealProducts,
+            count,
             wishlist,
-            singleProduct,
-            fetchSingleProducts,
             updateQuantity,
             addToCart,
             removeFromCart,
@@ -200,12 +202,16 @@ function EcomContext({ children }) {
             existInWishlist,
             removeFromWishlist,
             addToWishlist,
-
+            getCount,
         }}>
 
             {children}
-        </ecomcontext.Provider>
+        </AdminEcom.Provider>
     )
 }
 
-export default EcomContext
+export function useAdminEcom(){
+    return useContext(AdminEcom)
+}
+
+export default AdminEcomProvider

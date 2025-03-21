@@ -48,7 +48,7 @@ function Login() {
 
     return (
         <>
-            <div className=" py-4 px-8 bg-red-100 rounded-2xl w-[30%]  mx-auto  my-12 ">
+            <div className=" py-4 px-8 bg-red-100 rounded-2xl w-[30%]  mx-auto  my-20 ">
 
 
                 <h2 className="text-center my-4 text-3xl font-medium"> Login Form</h2>

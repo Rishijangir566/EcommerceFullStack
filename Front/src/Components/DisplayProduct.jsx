@@ -12,21 +12,21 @@ function DisplayProduct({ product }) {
 
    
 
-        <div className="flex justify-center gap-12 flex-wrap my-12  ">
+        <div className="flex justify-around  gap-8 flex-wrap my-20   ">
 
             {
-                product?.products?.length > 0 ? (
-                    product?.products?.map((item) => {
-                        return <div key={item._id} className=" mx-8 w-[12rem] h-[20rem] ">
-                            <Link to={`/product/${item._id}`}> <img className="object-contain w-[12rem] h-[12rem]  " src={item.image} /> </Link>
+                product?.length > 0 ? (
+                    product?.map((item) => {
+                        return <div key={item._id} className=" w-[18rem] h-[22rem] shadow shadow-black ">
+                            <Link to={`/product/${item._id}`}> <img className="object-contain w-[18rem] h-[14rem] p-4  " src={item.image} /> </Link>
                         
-                            <h2 className="mt-4 font-medium  ">
-                                <span className=' font-bold w-[8rem]'> {item.brand + " :"} </span>
+                            <h2 className="mt-4 font-medium ml-8">
+                                <span className=' font-bold w-[17rem]'> {item.brand + " :"} </span>
                                 {item.title.split(" ").slice(0,2).join(" ") + "..." } </h2>
                                 {/* .split(" ").slice(0, 3).join(" ") + "..."  */}
                             {/* <p className=" my-1"><span className='text-red-700 font-bold' > Discounted Price :</span> $ {item.discountPrice}</p> */}
-                        <p className=" my-1 font-bold  ">  Price : $  {item.discountPrice+"  "}<s><span className='font-light text-red-500 text-sm'> {item.usualPrice} </span></s>  </p>
-                            <button className="py-1 w-[12rem] border rounded" >Add To Wishlist</button>
+                        <p className=" my-1 font-bold ml-8 ">  Price : $  {item.discountPrice+"  "}<s><span className='font-light text-red-500 text-sm'> {item.usualPrice} </span></s>  </p>
+                            <button className="py-1 w-[18rem] bg-blue-900 mt-4 text-white" >Add To Wishlist</button>
    
                         </div>
                     })

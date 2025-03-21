@@ -6,57 +6,54 @@ const AuthContext = createContext(null)
 
 function AuthProvider({ children }) {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
-    const [isAdminLoggedIn, setAdminLoggedIn] = useState(false)
+    const [loggegInUser, setLoggedInUser] = useState({})
     useEffect(() => {
         checkAuth()
-        checkAuthAdmin()
+        // checkAuthAdmin()
     }, [])
-    console.log(isUserLoggedIn);
+    // console.log(isUserLoggedIn);
 
     
     // user login check
     async function checkAuth() {
         try {
-            await instance.get("/auth/check", { withCredentials: true })
-            setIsUserLoggedIn(true)
+          const response=  await instance.get("/auth/check", { withCredentials: true })
+           if(response.status===200){
+               setIsUserLoggedIn(true)
+              setLoggedInUser(response.user)
+           }
         } catch (error) {
             console.log(error);
             setIsUserLoggedIn(false)
+            setLoggedInUser({})
         }
     }
 
     // admin login check
-    async function checkAuthAdmin() {
-        try {
-            await instance.get("/admin/check", {withCredentials: true,})
-            setAdminLoggedIn(true)
-        } catch (error) {
-            console.log(error);
-            setAdminLoggedIn(false)
-        }
-    }
+    // async function checkAuthAdmin() {
+    //     try {
+    //         await instance.get("/admin/check", {withCredentials: true,})
+    //         setAdminLoggedIn(true)
+    //     } catch (error) {
+    //         console.log(error);
+    //         setAdminLoggedIn(false)
+    //     }
+    // }
 
     async function logout() {
         try {
-            if (isUserLoggedIn) {
+           
                 await instance.post("/auth/logout", {}, { withCredentials: true });
                 setIsUserLoggedIn(false)
                 checkAuth()
-            } else {
-                await instance.post("/admin/logout", {}, { withCredentials: true })
-                setAdminLoggedIn(false)
-                checkAuthAdmin()
-                window.location.href = "/admin/login"
-            }
-
-        } catch (error) {
+            }catch (error) {
             console.log(error);
 
         }
     }
 
     return (
-        <AuthContext.Provider value={{ isUserLoggedIn, logout, checkAuth, isAdminLoggedIn, checkAuthAdmin }}>
+        <AuthContext.Provider value={{ isUserLoggedIn, logout, checkAuth, loggegInUser, }}>
             {children}
         </AuthContext.Provider>
     )

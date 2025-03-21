@@ -11,11 +11,11 @@ function AdminCategory() {
         else fetchCategory();
       }, [page]);
 
-      console.log("categories", categories);
+    //   console.log("categories", categories);
 
     return (
-        <div className="min-h-screen flex items-stretch">
-      <aside className="w-1/5 p-4 bg-gray-200 min-h-fit">
+        <div className="min-h-screen flex items-stretch ">
+      <aside className="w-1/5 p-4 pl-12 bg-gray-200 min-h-fit">
         <h1 className="text-2xl font-bold">Admin Panel</h1>
         <ul className="mt-4 sticky top-0">
           <li>
@@ -45,7 +45,7 @@ function AdminCategory() {
           </li>
         </ul>
       </aside>
-      <main className="w-4/5 p-4">
+      <main className="w-4/5 p-4 mt-12">
         <h2 className="text-2xl font-bold mb-3 flex justify-between items-center">
           Categories
           <Link
@@ -63,7 +63,7 @@ function AdminCategory() {
             </tr>
           </thead>
           <tbody>
-            {categories?.category?.map((item, index) => {
+            {categories.map((item, index) => {
               return (
                 <tr
                   key={item._id}

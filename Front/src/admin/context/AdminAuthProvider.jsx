@@ -21,8 +21,9 @@ function AdminAuthProvider({ children }) {
                 withCredentials: true,
             });
             if (response.status === 200) {
+                // console.log(response.data.admin);
                 setIsAdminLoggedIn(true);
-                setLoggedInAdmin(response.admin);
+                setLoggedInAdmin(response.data.admin);
             }
         } catch (error) {
             console.log(error);
@@ -31,7 +32,7 @@ function AdminAuthProvider({ children }) {
         }
     }
 
-    async function logout() {
+    async function adminLogout() {
         try {
             await instance.post(
                 "/admin/logout",
@@ -52,7 +53,7 @@ function AdminAuthProvider({ children }) {
             value={{
                 isAdminLoggedIn,
                 loggedInAdmin,
-                logout,
+                adminLogout,
                 checkAuthAdmin,
             }}
         >

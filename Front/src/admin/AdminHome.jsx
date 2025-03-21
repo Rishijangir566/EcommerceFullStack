@@ -1,17 +1,19 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ecomcontext } from "../context/EcomContext";
+import { useAdminEcom } from "./context/AdminEcomProvider";
 
 function AdminHome() {
   // const{categories}=useContext(ecomcontext)
-  const { count, getCount } = useContext(ecomcontext);
+  const { count, getCount } = useAdminEcom();
 
+   console.log(count);
+   
   useEffect(() => {
     getCount();
   }, []);
   return (
     <div className="min-h-screen flex">
-    <aside className="w-1/5 p-4 bg-gray-200 min-h-fit">
+    <aside className="w-1/5 p-4 pl-12 bg-gray-200 min-h-fit">
       <h1 className="text-2xl font-bold">Admin Panel</h1>
       <ul className="mt-4 sticky top-0">
         <li>
@@ -41,7 +43,7 @@ function AdminHome() {
         </li>
       </ul>
     </aside>
-    <main className="w-4/5 p-4">
+    <main className="w-4/5 p-4 mt-12">
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-gray-200 p-4 rounded-lg">
           <h2 className="text-2xl font-bold">Products</h2>

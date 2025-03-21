@@ -1,7 +1,7 @@
 import { useState } from "react"
 // import { useNavigate } from "react-router-dom"
 import instance from "../axiosConfig"
-import { useAuth } from "../context/AuthProvider"
+import { useAdminAuth } from "./context/AdminAuthProvider";
 
 function AdminLogin() {
 
@@ -11,7 +11,7 @@ function AdminLogin() {
     })
     const [error, setError] = useState("");
 
-    const { checkAuthAdmin } = useAuth();
+    const { checkAuthAdmin } = useAdminAuth();
     // const navigate = useNavigate();
 
     function handlechange(e) {

@@ -29,7 +29,7 @@ function ProtectedRoute({children}) {
 
   if (loading) return <div>Loading ... </div>
 
-  return allowed ? (children) :(<Navigate to={"/"+children.props.destination} replace />)  
+  return allowed ? (children) :(<Navigate to={"/"+children.props.fallback} replace />)  
 
 }
 
