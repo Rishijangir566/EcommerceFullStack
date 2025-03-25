@@ -5,7 +5,7 @@ const authRouter =express.Router();
 
 authRouter.get("/check" , check,(req, res)=>{
     // console.log("cookies",req.cookies);
-    res.send({message:"User Authntication "})
+    res.send({message:"User Authntication " ,user:req.user});
 });
 
 authRouter.post("/logout",async(req,res)=>{

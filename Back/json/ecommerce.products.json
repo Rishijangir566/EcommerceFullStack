@@ -7,26 +7,28 @@
   "category": {
     "$oid": "67c5846382ff318aa5c8a14d"
   },
-  "description":"A laptop is a portable personal computer designed for convenience and mobility. It features an integrated screen, keyboard, touchpad (or pointing device), and a rechargeable battery, allowing users to work or browse the internet without needing to be plugged in continuously.",
+  "description": "A laptop is a portable personal computer designed for convenience and mobility. It features an integrated screen, keyboard, touchpad (or pointing device), and a rechargeable battery, allowing users to work or browse the internet without needing to be plugged in continuously.",
   "usualPrice": 1234,
   "discountPrice": 1199,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004294/ecommerce/ugvysqgdskadzwkoupqj.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "LaptopDell"
 },
 {
   "_id": {
     "$oid": "67c59e39e4897fe068dc5562"
   },
-  "title": "Mobile",
+  "title": "I phone 16 ",
   "brand": "Apple",
   "category": {
     "$oid": "67c5846382ff318aa5c8a14d"
   },
-  "description":"Apple mobile phones, known as iPhones, are premium smartphones featuring sleek designs, powerful processors, advanced cameras, and seamless integration with the iOS ecosystem. They offer high security, smooth performance, and exclusive features like Face ID, iCloud, and the App Store.",
+  "description": "Apple mobile phones, known as iPhones, are premium smartphones featuring sleek designs, powerful processors, advanced cameras, and seamless integration with the iOS ecosystem. They offer high security, smooth performance, and exclusive features like Face ID, iCloud, and the App Store.",
   "usualPrice": 565,
   "discountPrice": 344,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004344/ecommerce/s74npimwrquykcyowv9e.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "Apple Iphone 16"
 },
 {
   "_id": {
@@ -37,11 +39,12 @@
   "category": {
     "$oid": "67c584c382ff318aa5c8a153"
   },
-  "description":"A double bed is a medium-sized bed designed for two people, offering a comfortable sleeping space. It typically measures 54 inches wide by 75 inches long and is ideal for couples or individuals who prefer extra room.",
+  "description": "A double bed is a medium-sized bed designed for two people, offering a comfortable sleeping space. It typically measures 54 inches wide by 75 inches long and is ideal for couples or individuals who prefer extra room.",
   "usualPrice": 354,
   "discountPrice": 235,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004392/ecommerce/nq6th3ark60unqjwh5ng.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "Double bed"
 },
 {
   "_id": {
@@ -52,11 +55,12 @@
   "category": {
     "$oid": "67c584c382ff318aa5c8a153"
   },
-  "description":"A chair is a piece of furniture designed for sitting, typically featuring a seat, backrest, and four legs. It comes in various styles, materials, and designs for different uses, including office, dining, and lounge seating.",
+  "description": "A chair is a piece of furniture designed for sitting, typically featuring a seat, backrest, and four legs. It comes in various styles, materials, and designs for different uses, including office, dining, and lounge seating.",
   "usualPrice": 232,
   "discountPrice": 120,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741004427/ecommerce/cvaf9p8vr1wztxycxxqx.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "Sunstar Chair"
 },
 {
   "_id": {
@@ -71,7 +75,8 @@
   "discountPrice": 11,
   "discription": "Nike shoes offer a perfect blend of style, comfort, and performance, designed for athletes and casual wearers alike. With innovative technology and sleek designs, they provide superior cushioning, durability, and support for every step.",
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741059918/ecommerce/vugjxohgea2ulmclmoft.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "nike shoes"
 },
 {
   "_id": {
@@ -82,11 +87,12 @@
   "category": {
     "$oid": "67c584c382ff318aa5c8a153"
   },
-  "description":"A sofa is a comfortable, upholstered seating piece designed for multiple people, commonly found in living rooms. It comes in various styles, materials, and sizes, offering both functionality and aesthetic appeal.",
+  "description": "A sofa is a comfortable, upholstered seating piece designed for multiple people, commonly found in living rooms. It comes in various styles, materials, and sizes, offering both functionality and aesthetic appeal.",
   "usualPrice": 200,
   "discountPrice": 188,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741061390/ecommerce/us7bxvel370tb5ceeg8b.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "Soffa "
 },
 {
   "_id": {
@@ -95,13 +101,14 @@
   "title": "DairyMilk",
   "brand": "Chocolate",
   "category": {
-    "$oid": "67c5836182ff318aa5c8a14b"
+    "$oid": "67cfe552eea52b3a351b47a5"
   },
-  "description":"Dairy Milk is a rich and creamy chocolate made from high-quality milk and cocoa, offering a smooth and delicious taste. It is a popular treat enjoyed by all ages for its melt-in-the-mouth texture and sweet flavor.",
+  "description": "Dairy Milk is a rich and creamy chocolate made from high-quality milk and cocoa, offering a smooth and delicious taste. It is a popular treat enjoyed by all ages for its melt-in-the-mouth texture and sweet flavor.",
   "usualPrice": 20,
   "discountPrice": 15,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741064143/ecommerce/qdrgdicvfzzlq2t3xvng.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "DairyMilk Silk"
 },
 {
   "_id": {
@@ -110,28 +117,14 @@
   "title": "Kitkat",
   "brand": "Chocolate",
   "category": {
-    "$oid": "67c5836182ff318aa5c8a14b"
+    "$oid": "67cfe552eea52b3a351b47a5"
   },
-  "description":"Chocolate is a sweet, rich treat made from cocoa beans, often mixed with milk and sugar. It comes in various forms like dark, milk, and white chocolate, enjoyed in bars, desserts, and beverages.",
+  "description": "Chocolate is a sweet, rich treat made from cocoa beans, often mixed with milk and sugar. It comes in various forms like dark, milk, and white chocolate, enjoyed in bars, desserts, and beverages.",
   "usualPrice": 9,
   "discountPrice": 8,
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741064269/ecommerce/mqvosdgndvlyakjm7sq3.jpg",
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "67c688d939255c3d54647703"
-  },
-  "title": "Sliper",
-  "brand": "Paragon",
-  "category": {
-    "$oid": "67c5849982ff318aa5c8a151"
-  },
-  "description":"A slipper is a lightweight, comfortable footwear designed for indoor use, providing warmth and ease of movement. It typically features a soft sole and cozy materials like fabric, wool, or foam for added comfort.",
-  "usualPrice": 18,
-  "discountPrice": 16,
-  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741064408/ecommerce/j8hxwfmfgcavxzqhk4hf.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "KitKat For Love"
 },
 {
   "_id": {
@@ -146,7 +139,8 @@
   "discountPrice": 121,
   "description": "Earphones are small, lightweight audio devices designed to fit in or around the ears for private listening. They provide clear sound quality and often feature wired or wireless connectivity, noise cancellation, and built-in microphones for calls.",
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741072369/ecommerce/ol5pduvu8f6j878qzuie.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "Boat Earphone"
 },
 {
   "_id": {
@@ -155,13 +149,14 @@
   "title": "Rasgula",
   "brand": "Bikaji",
   "category": {
-    "$oid": "67c5836182ff318aa5c8a14b"
+    "$oid": "67cfe552eea52b3a351b47a5"
   },
   "usualPrice": 10,
   "discountPrice": 10,
   "description": "Bikaji Rasgulla is a soft, spongy, and juicy Indian dessert made from chhena (cottage cheese) and soaked in light sugar syrup. It offers a delightful melt-in-the-mouth experience with a perfect balance of sweetness.",
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741072514/ecommerce/zus9cytnvnjrxt0sqadx.jpg",
-  "__v": 0
+  "__v": 0,
+  "slug": "Rassgolla"
 },
 {
   "_id": {
@@ -176,5 +171,278 @@
   "discountPrice": 17,
   "description": "Bahamas slippers are stylish, lightweight, and comfortable footwear designed for casual wear. They feature a soft sole and breathable materials, perfect for beach outings or everyday use.",
   "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741072670/ecommerce/vu0iosnx1jg9ubivx83o.webp",
-  "__v": 0
+  "__v": 0,
+  "slug": "Slipper"
+},
+{
+  "_id": {
+    "$oid": "67ca861622ff3dead592c7f7"
+  },
+  "title": "Fan",
+  "brand": "Collstar",
+  "category": {
+    "$oid": "67c5846382ff318aa5c8a14d"
+  },
+  "usualPrice": 1200,
+  "discount": 20,
+  "discountPrice": 960,
+  "description": "A fan is an electrical device designed to create airflow and provide cooling by rotating blades or an impeller. ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741325846/ecommerce/vqwkbtdacplzrdtjjiye.jpg",
+  "__v": 0,
+  "slug": "Cool Fan"
+},
+{
+  "_id": {
+    "$oid": "67ca86cc22ff3dead592c7fd"
+  },
+  "title": "Tablets",
+  "brand": "Vivo",
+  "category": {
+    "$oid": "67c5846382ff318aa5c8a14d"
+  },
+  "usualPrice": 7000,
+  "discount": 25,
+  "discountPrice": 5250,
+  "description": "Tablets come in various screen sizes and run on operating systems like Android, iOS, or Windows. They often include features like stylus support",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741326028/ecommerce/sozq7isri7v3lazqnxza.jpg",
+  "__v": 0,
+  "slug": "Vivo Tab"
+},
+{
+  "_id": {
+    "$oid": "67ca875022ff3dead592c802"
+  },
+  "title": "Vivo T3 Pro",
+  "brand": "Vivo",
+  "category": {
+    "$oid": "67c5846382ff318aa5c8a14d"
+  },
+  "usualPrice": 3000,
+  "discount": 9,
+  "discountPrice": 2730,
+  "description": "Could you clarify what kind of description you need? Are you looking for a product description for a mobile phone, an app description, or something else?",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741326160/ecommerce/jh6pirnuxmcxhfk7oahs.jpg",
+  "__v": 0,
+  "slug": "Vivo Mobile"
+},
+{
+  "_id": {
+    "$oid": "67ca87d322ff3dead592c806"
+  },
+  "title": "Kuch Kuch Namkeen",
+  "brand": "Bikaji",
+  "category": {
+    "$oid": "67cfe552eea52b3a351b47a5"
+  },
+  "usualPrice": 210,
+  "discount": 13,
+  "discountPrice": 182.7,
+  "description": "Namkeen refers to a variety of savory snacks popular in India and South Asia. These crunchy, salty, and sometimes spicy snacks are made from ingredients like gram flour, lentils, rice flour, peanuts, and spices.",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741326291/ecommerce/vo7q9bcsuriyqstkyill.jpg",
+  "__v": 0,
+  "slug": "Bikaji Loves "
+},
+{
+  "_id": {
+    "$oid": "67cfdae51db943ab7781315e"
+  },
+  "title": "Massal Dani",
+  "brand": "Home",
+  "category": {
+    "$oid": "67cfda8a1db943ab77813159"
+  },
+  "usualPrice": 120,
+  "discount": 11,
+  "discountPrice": 106.8,
+  "description": "this contain be masala and so more",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1741675237/ecommerce/yq4t9jntjppap2rdhbgq.jpg",
+  "__v": 0,
+  "slug": "Massala dan"
+},
+{
+  "_id": {
+    "$oid": "67dbc678ecc5aa90e4d4e358"
+  },
+  "title": "Waiver Cleaner",
+  "brand": "Star Cleaner",
+  "category": {
+    "$oid": "67cfda8a1db943ab77813159"
+  },
+  "usualPrice": 200,
+  "discount": 20,
+  "discountPrice": 180,
+  "description": "this is waiver the clean home",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742456438/ecommerce/oar3w0faxav3uzffjhdm.jpg",
+  "__v": 0,
+  "slug": "waiver Cleaner"
+},
+{
+  "_id": {
+    "$oid": "67dbdb7fecc5aa90e4d4e387"
+  },
+  "title": "Hand bag",
+  "brand": "Lenovo ",
+  "category": {
+    "$oid": "67dbdb18ecc5aa90e4d4e382"
+  },
+  "usualPrice": 1900,
+  "discount": 15,
+  "discountPrice": 1885,
+  "description": "cantain the items and your clothes  ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742461821/ecommerce/uo2dgmb4ybzmvnjvccuw.jpg",
+  "__v": 0,
+  "slug": "Hand bages"
+},
+{
+  "_id": {
+    "$oid": "67dbdc00ecc5aa90e4d4e389"
+  },
+  "title": "Trolly Bag (American Tourist)",
+  "brand": "American Tourist",
+  "category": {
+    "$oid": "67dbdb18ecc5aa90e4d4e382"
+  },
+  "usualPrice": 4400,
+  "discount": 20,
+  "discountPrice": 4380,
+  "description": "Trolly bages cantain the items and all types product   ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742461950/ecommerce/shi7amdm17osxuf8m82c.webp",
+  "__v": 0,
+  "slug": "Trolly Bages"
+},
+{
+  "_id": {
+    "$oid": "67dbdde2ecc5aa90e4d4e397"
+  },
+  "title": "Women Top ",
+  "brand": "Biba",
+  "category": {
+    "$oid": "67dbdd70ecc5aa90e4d4e392"
+  },
+  "usualPrice": 490,
+  "discount": 30,
+  "discountPrice": 460,
+  "description": "Girls Top looks so pretty and unique ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742462431/ecommerce/gqyyfammffhmlmkehdww.jpg",
+  "__v": 0,
+  "slug": "Women Top"
+},
+{
+  "_id": {
+    "$oid": "67dbde21ecc5aa90e4d4e399"
+  },
+  "title": "T-shirt for Women",
+  "brand": "Biba",
+  "category": {
+    "$oid": "67dbdd70ecc5aa90e4d4e392"
+  },
+  "usualPrice": 620,
+  "discount": 25,
+  "discountPrice": 595,
+  "description": "Girls Top looks so pretty and unique ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742462495/ecommerce/re9hg6epiufz1jxy6bky.jpg",
+  "__v": 0,
+  "slug": "tShirt for men"
+},
+{
+  "_id": {
+    "$oid": "67dbde69ecc5aa90e4d4e39b"
+  },
+  "title": "T-shirt for Men",
+  "brand": "Tommy Hilfiger",
+  "category": {
+    "$oid": "67dbdd70ecc5aa90e4d4e392"
+  },
+  "usualPrice": 440,
+  "discount": 25,
+  "discountPrice": 415,
+  "description": "comfort and well fit this t-Shirt",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742462566/ecommerce/jgqewgf6tvqeknftdlvz.jpg",
+  "__v": 0,
+  "slug": "Tommy Tshirt"
+},
+{
+  "_id": {
+    "$oid": "67dbded2ecc5aa90e4d4e3a2"
+  },
+  "title": "NB 1906 L-fit Shoes",
+  "brand": "New Balance",
+  "category": {
+    "$oid": "67c5849982ff318aa5c8a151"
+  },
+  "usualPrice": 4300,
+  "discount": 12,
+  "discountPrice": 4288,
+  "description": "comfort and fit shoes NB",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742462671/ecommerce/j4lrxzimepgbanyll4bc.jpg",
+  "__v": 0,
+  "slug": "NB shoes"
+},
+{
+  "_id": {
+    "$oid": "67dbdf1decc5aa90e4d4e3a4"
+  },
+  "title": "Tommy Tshirt",
+  "brand": "Tommy Hilfiger",
+  "category": {
+    "$oid": "67dbdd70ecc5aa90e4d4e392"
+  },
+  "usualPrice": 430,
+  "discount": 12,
+  "discountPrice": 418,
+  "description": "comfort and fit t-shirt ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742462747/ecommerce/hvijhl7tapm0c8qqnagf.jpg",
+  "__v": 0,
+  "slug": "Comfort Tshirt"
+},
+{
+  "_id": {
+    "$oid": "67dbdf66ecc5aa90e4d4e3a6"
+  },
+  "title": "Sweet-Shirt",
+  "brand": "Tommy - Hilfiger",
+  "category": {
+    "$oid": "67dbdd70ecc5aa90e4d4e392"
+  },
+  "usualPrice": 1430,
+  "discount": 20,
+  "discountPrice": 1144,
+  "description": "comfort and fit shirt ",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742462819/ecommerce/fmg2mhlojhlhhrnyvipv.jpg",
+  "__v": 0,
+  "slug": "Sweet Shirt"
+},
+{
+  "_id": {
+    "$oid": "67dbe061ecc5aa90e4d4e3db"
+  },
+  "title": "Pyaj-Cutter",
+  "brand": "Dommy",
+  "category": {
+    "$oid": "67cfda8a1db943ab77813159"
+  },
+  "usualPrice": 90,
+  "discount": 10,
+  "discountPrice": 81,
+  "description": "cut small pices onion and chilly and etc ...",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742463071/ecommerce/yhur91favjh1ezumwss2.jpg",
+  "__v": 0,
+  "slug": "Pyaj Cutter"
+},
+{
+  "_id": {
+    "$oid": "67dbe119ecc5aa90e4d4e3e2"
+  },
+  "title": "Gym bag & Hand Bag",
+  "brand": "Amiri",
+  "category": {
+    "$oid": "67dbdb18ecc5aa90e4d4e382"
+  },
+  "usualPrice": 1100,
+  "discount": 40,
+  "discountPrice": 660,
+  "description": "cantain all types items and full storeage",
+  "image": "https://res.cloudinary.com/dcmpkxqdq/image/upload/v1742463254/ecommerce/qpqwaxszeeo9brmenlrs.jpg",
+  "__v": 0,
+  "slug": "Gym bages"
 }]

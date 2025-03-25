@@ -26,19 +26,19 @@ function Login() {
             const response = await instance.post("/user/login", data, { withCredentials: true })
             console.log(response.data);
             checkAuth()
-            if (response.status === 200 && response.data.message === "Login Successful"){ 
-               
+            if (response.status === 200 && response.data.message === "Login Successful") {
+
                 const searchParams = new URLSearchParams(window.location.search)
                 const URLParams = searchParams.get("referer")
-                if(URLParams && URLParams.trim() !==""){
-                    window.location.href=URLParams;
+                if (URLParams) {
+                    window.location.href = URLParams;
                 }
-                else{
+                else {
                     navigate("/")
                 }
-            
-            } 
-               
+
+            }
+
             // window.location.href("/")
         } catch (error) {
             console.log(error);

@@ -59,6 +59,7 @@ function AdminCategory() {
           <thead>
             <tr className="text-left">
               <th className="p-2">Name</th>
+              <th className="p-2">Icon</th>
               <th className="p-2">Action</th>
             </tr>
           </thead>
@@ -68,16 +69,18 @@ function AdminCategory() {
                 <tr
                   key={item._id}
                   className={`mb-2 ${
-                    index % 2 === 0 ? "bg-gray-100" : "bg-gray-200"
+                    index % 2 === 0 ? "bg-gray-200" : ""
                   }`}
                 >
+                  <td className="p-2">
+                    <p className="capitalize">{item.name}</p>
+                  </td>
                   <td className="p-2">
                     <img
                       src={item.image}
                       className="w-20 h-20 object-contain"
                       alt=""
                     />
-                    <p>{item.name}</p>
                   </td>
                   <td className="p-2">
                     <button

@@ -3,11 +3,24 @@ import instance from "../axiosConfig";
 import { ecomcontext } from "../context/EcomContext";
 
 function AddProduct() {
-  const { categories, fetchCategory } = useContext(ecomcontext)
+  const { fetchCategory } = useContext(ecomcontext)
+
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    fetchdata()
+  }, [])
+
+  async function fetchdata() {
+    const response = await fetchCategory()
+    setCategories(response.category)
+  }
+
   const [form, setForm] = useState({
     title: "",
+    slug: "",
     brand: "",
-    category: "",
+    category: [],
     usualPrice: "",
     discountType: "",
     discount: "",
@@ -24,9 +37,13 @@ function AddProduct() {
     if (e.target.name === "image")
       setForm({ ...form, image: e.target.files[0] })
 
+    //  if(e.target.name==="category"){
+    //   setForm({...form, category:e.target.option})
+    //  }
+
     else {
       const { name, value } = e.target;
-      setForm({ ...form, [name]: value })
+      setForm({ ...form, [name]: value });
     }
   }
 
@@ -43,17 +60,32 @@ function AddProduct() {
 
     try {
       const frm = new FormData();
-      frm.append("title", form.title)
-      frm.append("brand", form.brand)
-      frm.append("category", form.category)
-      frm.append("usualPrice", form.usualPrice)
-      frm.append("discount", form.discount)
-      frm.append("discountPrice", form.discountPrice)
-      frm.append("description", form.description)
-      frm.append("image", form.image)
+      frm.append("title", form.title);
+      frm.append("slug", form.slug);
+      frm.append("brand", form.brand);
+      frm.append("category", form.category);
+      frm.append("usualPrice", form.usualPrice);
+      frm.append("discount", form.discount);
+      frm.append("discountPrice", form.discountPrice);
+      frm.append("description", form.description);
+      frm.append("image", form.image);
 
       const response = await instance.post("/product/add", frm, { withCredentials: true })
       console.log(response);
+
+      setForm({
+        title: "",
+        slug: "",
+        brand: "",
+        category: [],
+        usualPrice: "",
+        discountType: "",
+        discount: "",
+        discountPrice: "",
+        description: "",
+        image: ""
+      })
+
     } catch (error) {
       console.log(error);
       setError(error.message)
@@ -78,8 +110,25 @@ function AddProduct() {
             name="title"
             value={form.title}
             onChange={handleChange}
+            onBlur={(e) =>
+              setForm((form) => ({
+                ...form,
+                slug: slugify(e.target.value, {
+                  lower: true,
+                  remove: /[*+~.()'"!:@/]/g,
+                }),
+              }))
+            }
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
             autoFocus
+          />
+          <input
+            type="text"
+            placeholder="Enter Product slug"
+            name="slug"
+            value={form.slug}
+            onChange={handleChange}
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="text"
@@ -91,12 +140,12 @@ function AddProduct() {
           />
           <select
             name="category"
-            id=""
             value={form.category}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+           
           >
-            <option value="" selected disabled placeholder="Select Category">
+            <option value=""  disabled placeholder="Select Category">
               Select Category
             </option>
             {categories.map((category, index) => {
@@ -106,6 +155,7 @@ function AddProduct() {
                 </option>
               );
             })}
+
           </select>
           <input
             type="number"

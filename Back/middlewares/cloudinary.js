@@ -2,7 +2,8 @@ import { v2 as cloudinary } from "cloudinary"
 import "dotenv/config"
 
 async function uploadToCloudinary(req) {
-    console.log("req file path", req.file.path);
+    // console.log("req file path", req.file.path);
+console.log(process);
 
     //configuration 
     cloudinary.config({

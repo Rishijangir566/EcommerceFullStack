@@ -9,7 +9,7 @@ function AdminProducts() {
         if (page > 1) fetchProducts(page);
         else fetchProducts();
     }, [page]);
-    // console.log(products.product);
+    console.log(product);
 
    
 
@@ -52,7 +52,7 @@ function AdminProducts() {
                                     <td>{item.title}</td>
                                     <td>{item.usualPrice}</td>
                                     <td>{item.discountPrice}</td>
-                                    <td>{item.category?.name}</td>
+                                    <td>{item.category}</td>
                                     <td>
                                         <button className="bg-red-500 text-white p-1 rounded"
                                         onClick={()=>handleDelete(item._id ,"product")}>
