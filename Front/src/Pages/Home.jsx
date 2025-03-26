@@ -11,11 +11,11 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [product, setProducts] = useState([]);
   const [productByCat, setProductByCat] = useState([]);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (page > 1) fetchProducts(page);
-    else fetchProducts();
+    // if (page > 1) fetchProducts(page);
+    // else fetchProducts();
     fetchData();
   }, []);
 
@@ -72,7 +72,7 @@ function Home() {
           <DisplayProduct
             product={productByCat?.product?.length > 0 ? productByCat : product}
           />
-          <div className="pagination my-3">
+          {/* <div className="pagination  mb-10">
             {product.currentPage > 1 && (
               <Link
                 to={`?page=${product.currentPage - 1}`}
@@ -105,8 +105,8 @@ function Home() {
                 Next
               </Link>
             )}
-          </div>
-        </div>
+          </div>*/}
+        </div> 
       </div>
     </>
   );

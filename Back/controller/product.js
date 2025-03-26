@@ -44,7 +44,7 @@ export async function fetchProducts(req, res) {
     }
     // pagination use in backend 10 product and next 10 product show
     const page = req.query.page ? Number(req.query.page) : 1;
-    const limit = Number(req.query.limit) === -1 ? 0 : 9;
+    const limit = Number(req.query.limit) === -1 ? 0 : 50;
     const skip = (page - 1) * limit;
 
     // console.log("query", query);

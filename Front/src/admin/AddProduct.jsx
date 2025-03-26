@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import instance from "../axiosConfig";
+import slugify from "slugify"
 import { ecomcontext } from "../context/EcomContext";
 
 function AddProduct() {
@@ -232,3 +233,5 @@ function AddProduct() {
 }
 
 export default AddProduct
+
+
