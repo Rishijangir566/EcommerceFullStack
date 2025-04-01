@@ -108,3 +108,24 @@ export async function checkInWishlist(req, res) {
      });
    }
  }
+
+
+ export async function getWishlist(req, res) {
+   try {
+     const { id } = req.user;
+     const user = await User.findById(id);
+     // console.log(user);
+     if (!user) return res.status(404).send({ message: "User not found" });
+ 
+     if (user.wishlist.length > 0) {
+       const allWishlistProducts = user.wishlist.map(async (productID) => {
+         return await Product.findById(productID);
+       });
+       
+       const productsInWishlist = await Promise.all(allWishlistProducts);
+       return res.send({ wishlist: productsInWishlist});
+     }
+   } catch (error) {
+     return res.status(500).send({ errorString: error.message });
+   }
+}

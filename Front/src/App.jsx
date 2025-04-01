@@ -20,6 +20,7 @@ import AdminProducts from "./admin/AdminProducts"
 import AdminCategory from "./admin/AdminCategory"
 import AdminAuthProvider from "./admin/context/AdminAuthProvider"
 import AdminEcomProvider from "./admin/context/AdminEcomProvider"
+import WishList from "./Pages/WishList"
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-
+       {
+        path: "/wishlist",
+        element:<WishList />
+      },
       {
         path: "/cart/fetchcart",
         element:(
@@ -105,6 +109,7 @@ const router = createBrowserRouter([
         path: "/hotDeals",
         element:<DisplayHotDeals />
       }
+     
     ],
   },
 ]);

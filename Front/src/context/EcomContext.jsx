@@ -6,8 +6,8 @@ import instance from "../axiosConfig";
 export const ecomcontext = createContext();
 function EcomContext({ children }) {
   const [loading, setLoading] = useState(true);
-  const [wishlist, setWishlist] = useState([]);
-  const [cart, setCart] = useState([]);
+  // const [wishlist, setWishlist] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [dealProducts, setDealProducts] = useState([]);
 
   async function fetchProducts(page = null) {
@@ -72,7 +72,6 @@ function EcomContext({ children }) {
     }
   }
 
-  // console.log(categories);
 
   async function handleDelete(idToDelete, whatTodelete) {
     try {
@@ -99,34 +98,34 @@ function EcomContext({ children }) {
     }
   }
 
-  async function updateQuantity(productId, sign) {
-    if (!existsInCart(productId)) {
-      console.log("Incorrect Id");
-    }
+  // async function updateQuantity(productId, sign) {
+  //   if (!existsInCart(productId)) {
+  //     console.log("Incorrect Id");
+  //   }
 
-    setCart(
-      cart.map((cartItem) =>
-        cartItem.product._id === productId
-          ? {
-              ...cartItem,
-              quantity: cartItem.quantity + (sign === "+" ? 1 : -1),
-            }
-          : cartItem
-      )
-    );
-  }
+  //   setCart(
+  //     cart.map((cartItem) =>
+  //       cartItem.product._id === productId
+  //         ? {
+  //             ...cartItem,
+  //             quantity: cartItem.quantity + (sign === "+" ? 1 : -1),
+  //           }
+  //         : cartItem
+  //     )
+  //   );
+  // }
   // console.log(cart)
 
-  function removeFromCart(productId) {
-    setCart(cart.filter((cartItem) => cartItem.product._id !== productId));
-  }
+  // function removeFromCart(productId) {
+  //   setCart(cart.filter((cartItem) => cartItem.product._id !== productId));
+  // }
 
-  function existsInCart(productId) {
-    const productAlreadyExists = cart.find(
-      (cartItem) => cartItem.product._id === productId
-    );
-    return productAlreadyExists ? true : false;
-  }
+  // function existsInCart(productId) {
+  //   const productAlreadyExists = cart.find(
+  //     (cartItem) => cartItem.product._id === productId
+  //   );
+  //   return productAlreadyExists ? true : false;
+  // }
 
   async function fetchHotDeals() {
     try {
@@ -136,6 +135,18 @@ function EcomContext({ children }) {
       console.log(error);
     }
   }
+
+  async function fetchWishlist(){
+    try{
+      const response = await instance.get("/user/getwishlist",{withCredentials:true}) 
+      console.log(response.data.wishlist)
+      return response.data.wishlist
+    }catch(error){
+      console.log(error);
+      
+    }
+  }
+
   async function addToWishlist(productSlug) {
     try {
       if (await existInWishlist(productSlug)) {
@@ -147,7 +158,11 @@ function EcomContext({ children }) {
           { withCredentials: true }
         );
         console.log(response);
+        if (response.status === 200) {
+          return response.data.user.wishlist;
+        }
       }
+
     } catch (error) {
       console.log(error);
     }
@@ -161,29 +176,28 @@ function EcomContext({ children }) {
   }
 
   // function to remove item from wishlist.
-  function removeFromWishlist(id) {
-    setWishlist(wishlist.filter((item) => item.product._id !== id));
-  }
+  // function removeFromWishlist(id) {
+  //   setWishlist(wishlist.filter((item) => item.product._id !== id));
+  // }
 
   return (
     <ecomcontext.Provider
       value={{
         loading,
-        cart,
         dealProducts,
-        wishlist,
+        fetchWishlist,
         fetchSingleProducts,
-        updateQuantity,
+        // updateQuantity,
         addToCart,
-        removeFromCart,
-        existsInCart,
+        // removeFromCart,
+        // existsInCart,
         fetchProducts,
         fetchCategory,
         filterByCategory,
         fetchHotDeals,
         handleDelete,
         existInWishlist,
-        removeFromWishlist,
+        // removeFromWishlist,
         addToWishlist,
       }}
     >
