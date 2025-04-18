@@ -62,7 +62,7 @@ export async function loginUser(req, res) {
 export async function addToWishlist(req,res){
    try{
       const {productSlug}=req.body;
-      const {id }=req.User;
+      const {id }=req.user;
 
    const product = await Product.findOne({slug:productSlug})
    if(!product)return res.status(404).send({message:"product not Found"})

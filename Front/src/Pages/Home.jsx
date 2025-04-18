@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-// import instance from "../axiosConfig"
 import { ecomcontext } from "../context/EcomContext";
 import Loader from "../Components/Loader";
 import DisplayProduct from "../Components/DisplayProduct";
@@ -11,11 +10,8 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [product, setProducts] = useState([]);
   const [productByCat, setProductByCat] = useState([]);
-  // const [page, setPage] = useState(1);
 
   useEffect(() => {
-    // if (page > 1) fetchProducts(page);
-    // else fetchProducts();
     fetchData();
   }, []);
 
@@ -34,7 +30,7 @@ function Home() {
     const productByCat = await filterByCategory(params.categoryName, true);
     setProductByCat(productByCat);
   }
-  console.log(categories)
+  
 
   return loading ? (
     <Loader />
@@ -46,8 +42,9 @@ function Home() {
             <h2 className="text-blue-800 ml-8 text-2xl font-bold mt-2 ">
               Category{" "}
             </h2>
-            <div className="categorylist ">
-              {categories.length > 0 &&
+            <div className="categorylist my-4 ">
+              <Link to={"/product"} className="list-none mx-10 my-4 font-bold">All</Link>
+              {categories?.length > 0 &&
                 categories.map((category, index) => {
                   return (
                     <li key={index} className="list-none mx-5 mt-4 font-bold">
@@ -72,40 +69,7 @@ function Home() {
           <DisplayProduct
             product={productByCat?.product?.length > 0 ? productByCat : product}
           />
-          {/* <div className="pagination  mb-10">
-            {product.currentPage > 1 && (
-              <Link
-                to={`?page=${product.currentPage - 1}`}
-                className="bg-blue-500 text-white p-1 rounded mx-2 px-2 cursor-pointer"
-                onClick={() => setPage(product.currentPage - 1)}
-              >
-                Previous
-              </Link>
-            )}
-
-            {Array.from({ length: product.totalPages }).map((_, index) => {
-              return (
-                <Link
-                  key={index}
-                  to={`?page=${index + 1}`}
-                  className="bg-blue-500 text-white p-1 rounded mx-2 px-2 cursor-pointer"
-                  onClick={() => setPage(index + 1)}
-                >
-                  {index + 1}
-                </Link>
-              );
-            })}
-
-            {product.currentPage < product.totalPages && (
-              <Link
-                to={`?page=${product.currentPage + 1}`}
-                className="bg-blue-500 text-white p-1 rounded mx-2 px-2 cursor-pointer"
-                onClick={() => setPage(product.currentPage + 1)}
-              >
-                Next
-              </Link>
-            )}
-          </div>*/}
+          
         </div> 
       </div>
     </>

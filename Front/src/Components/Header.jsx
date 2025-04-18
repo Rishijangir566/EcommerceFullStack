@@ -20,6 +20,8 @@ function Header() {
     const data = await fetchWishlist();
     setWishlist(data);
   }
+  // console.log(wishlist);
+  
 
   return (
     <header className="flex justify-between px-12 py-2 bg-green-300 fixed top-0 right-0 left-0 ">
@@ -33,7 +35,7 @@ function Header() {
             <Link to="/">Home</Link>{" "}
           </li>
 
-          <li className="mx-8">
+          <li className="mx-4">
             {isUserLoggedIn ? (
               <Link onClick={logout} to={`/user/login`}>
                 Logout
@@ -48,10 +50,10 @@ function Header() {
           </li>
           <li>
             <Link to="/wishlist">
-              <p className="flex items-center relative">
-                Wishlist
-                <span className="absolute right-[-10px] top-[-9px] rounded-full bg-red-600 text-white px-[5px] mt-1 text-xs">
-                  {wishlist?.length}
+              <p className="flex items-center relative mt-1 mr-3 text-xl">
+                
+                <span className="absolute right-[-13px] top-[-12px] rounded-full bg-red-600 text-white px-[5px] mt-1 text-xs">
+                  {wishlist?.length>0?wishlist.length:0}
                 </span>
                 <span className="px-1">
                   <FaHeart />
@@ -59,14 +61,14 @@ function Header() {
               </p>
             </Link>
           </li>
-          <li className="relative">
-            <Link to="/cart/fetchcart">
-              {" "}
+          <li className="relative ml-3">
+            <Link to="/cart/fetchcart ">
+              
               <FaShoppingCart className="text-xl mt-1" />
-            </Link>{" "}
-            <span className="absolute top-[-5px] right-[-20px] text-white bg-red-500 rounded-full px-1.5  text-sm">
-              {" "}
-              {/* {cart.length} */}
+            </Link>
+            <span className="absolute right-[-18px] top-[-5px]  text-white bg-red-500 rounded-full px-[5px]  text-xs">
+              
+           
             </span>
           </li>
         </ul>

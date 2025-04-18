@@ -6,18 +6,16 @@ import instance from "../axiosConfig";
 export const ecomcontext = createContext();
 function EcomContext({ children }) {
   const [loading, setLoading] = useState(true);
-  // const [wishlist, setWishlist] = useState([]);
-  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
   const [dealProducts, setDealProducts] = useState([]);
 
-  async function fetchProducts(page = null) {
+  async function fetchProducts() {
     try {
       setLoading(true);
       // const response = await instance.get("/product")
-      const response = await instance.get(
-        page ? `/product/get?page=${page}` : `product/get`,
-        { withCredentials: true }
-      );
+      const response = await instance.get(`product/get`, {
+        withCredentials: true,
+      });
       return response.data;
     } catch (error) {
       console.log(error);
@@ -61,8 +59,10 @@ function EcomContext({ children }) {
     try {
       setLoading(true);
       // const response = await instance.get("/product/categories/all")
-      const response = await instance.get("/product/category");
-      // console.log(response.data)
+      const response = await instance.get("/product/category", {
+        withCredentials: true,
+      });
+      // console.log("hello"+response.data)
       return response.data;
     } catch (error) {
       console.log(error);
@@ -71,7 +71,6 @@ function EcomContext({ children }) {
       setLoading(false);
     }
   }
-
 
   async function handleDelete(idToDelete, whatTodelete) {
     try {
@@ -86,46 +85,46 @@ function EcomContext({ children }) {
   }
 
   async function addToCart(product) {
+    const existingCartItem = cart.find(
+      (item) => item.product._id === product._id
+    );
     try {
-      const response = await instance.post(
-        "/cart/add",
-        { product: product._id, quantity: 1 },
-        { withCredentials: true }
-      );
-      console.log("cart update", response.data);
+      if (existingCartItem) {
+        setCart(
+          cart.map((item) =>
+            item.product._id === product._id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          )
+        );
+      } else {
+        setCart([...cart, { product, quantity: 1 }]);
+      }
     } catch (error) {
       console.log("product not added to cart", error);
     }
   }
 
-  // async function updateQuantity(productId, sign) {
-  //   if (!existsInCart(productId)) {
-  //     console.log("Incorrect Id");
-  //   }
+  function removeFromCart(productId) {
+    setCart(cart.filter((item) => item.product._id !== productId));
+  }
 
-  //   setCart(
-  //     cart.map((cartItem) =>
-  //       cartItem.product._id === productId
-  //         ? {
-  //             ...cartItem,
-  //             quantity: cartItem.quantity + (sign === "+" ? 1 : -1),
-  //           }
-  //         : cartItem
-  //     )
-  //   );
-  // }
-  // console.log(cart)
+  function updateQuantity(productId, action) {
+    setCart(
+      cart.map((item) =>
+        item.product._id === productId
+          ? {
+              ...item,
+              quantity:
+                action === "increment"
+                  ? item.quantity + 1
+                  : Math.max(item.quantity - 1, 1),
+            }
+          : item
+      )
+    );
+  }
 
-  // function removeFromCart(productId) {
-  //   setCart(cart.filter((cartItem) => cartItem.product._id !== productId));
-  // }
-
-  // function existsInCart(productId) {
-  //   const productAlreadyExists = cart.find(
-  //     (cartItem) => cartItem.product._id === productId
-  //   );
-  //   return productAlreadyExists ? true : false;
-  // }
 
   async function fetchHotDeals() {
     try {
@@ -136,14 +135,26 @@ function EcomContext({ children }) {
     }
   }
 
-  async function fetchWishlist(){
-    try{
-      const response = await instance.get("/user/getwishlist",{withCredentials:true}) 
-      console.log(response.data.wishlist)
-      return response.data.wishlist
-    }catch(error){
+  async function fetchWishlist() {
+    try {
+      const response = await instance.get("/user/getwishlist", {
+        withCredentials: true,
+      });
+      const wishlistData = response.data.wishlist;
+      console.log(wishlistData);
+
+      const populatedWishlist = await Promise.all(
+        wishlistData.map(async (productId) => {
+          const productResponse = await instance.get(
+            `/product/get/${productId.slug}`
+          );
+          return { product: productResponse.data.products[0] };
+        })
+      );
+      console.log(populatedWishlist);
+      return populatedWishlist;
+    } catch (error) {
       console.log(error);
-      
     }
   }
 
@@ -157,47 +168,40 @@ function EcomContext({ children }) {
           { productSlug },
           { withCredentials: true }
         );
-        console.log(response);
+        console.log(response.data);
         if (response.status === 200) {
           return response.data.user.wishlist;
         }
       }
-
     } catch (error) {
       console.log(error);
     }
   }
 
   async function existInWishlist(slug) {
-    const response = await instance.get(
-      `/user/checkInWishlist/${slug},{withCredentials:true}`
-    );
+    const response = await instance.get(`/user/checkInWishlist/${slug}`, {
+      withCredentials: true,
+    });
     return response.data.exists ? true : false;
   }
-
-  // function to remove item from wishlist.
-  // function removeFromWishlist(id) {
-  //   setWishlist(wishlist.filter((item) => item.product._id !== id));
-  // }
 
   return (
     <ecomcontext.Provider
       value={{
         loading,
         dealProducts,
+        cart,
         fetchWishlist,
         fetchSingleProducts,
-        // updateQuantity,
         addToCart,
-        // removeFromCart,
-        // existsInCart,
+        removeFromCart,
+        updateQuantity,
         fetchProducts,
         fetchCategory,
         filterByCategory,
         fetchHotDeals,
         handleDelete,
         existInWishlist,
-        // removeFromWishlist,
         addToWishlist,
       }}
     >
