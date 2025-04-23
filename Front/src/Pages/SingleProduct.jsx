@@ -17,7 +17,7 @@ function SingleProduct() {
   const { isUserLoggedIn } = useAuth();
 
   useEffect(() => {
-    if (id) initial();
+     initial();
   }, [id]);
 
   async function initial() {
@@ -33,9 +33,11 @@ function SingleProduct() {
   //   console.log(product, categories);
 
   useEffect(() => {
-    setCategoryName(
-      categories.find((category) => category._id === product.category)
-    );
+    if(categories?.category&& SingleProduct?.category){
+      const category =categories.category.find((obj)=>obj.id===SingleProduct.category)
+      setCategoryName(category?category.name:"unknown")
+    }
+  
   }, [product, categories]);
 
   // console.log(categoryName);
@@ -88,13 +90,13 @@ function SingleProduct() {
           </h2>
           <div className="flex gap-3 py-2">
             <Link
-              className="rounded px-2 py-1 bg-blue-400 text-white"
+              className="rounded px-2 py-1 bg-blue-600 text-white"
               onClick={handleAddToCart}
             >
               Add To Cart
             </Link>
             <Link
-              className="rounded px-2 py-1 bg-green-400 text-white"
+              className="rounded px-2 py-1 bg-green-600 text-white"
               onClick={handleAddToWishlist}
             >
               Add to Wishlist

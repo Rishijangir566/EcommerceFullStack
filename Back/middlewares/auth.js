@@ -5,7 +5,7 @@ import Admin from "../models/adminModel.js";
 
 // user login auth check
 export async function check(req, res, next) {
-    console.log("cookie", req.cookies);
+
 
     const token = req.cookies.loginToken;
     if (!token) return res.status(401).send({ message: "No Token Found" })
@@ -28,7 +28,6 @@ export async function check(req, res, next) {
 
 // admin login auth check
 export async function checkAdmin(req, res, next) {
-    console.log("cookie", req.cookies);
 
     const token = req.cookies.adminToken;
     if (!token) return res.status(401).send({ message: "No Token Found" })

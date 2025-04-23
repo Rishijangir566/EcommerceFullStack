@@ -27,7 +27,7 @@ export async function loginAdmin(req, res) {
           }
        );
  
-       console.log("adminToken", adminToken);
+      //  console.log("adminToken", adminToken);
  
        res.cookie("adminToken", adminToken, {
           httpOnly: false,

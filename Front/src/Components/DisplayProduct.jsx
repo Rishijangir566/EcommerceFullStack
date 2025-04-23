@@ -52,7 +52,7 @@ function DisplayProduct({ product }) {
                 >
                   
                   <button className="py-1 w-[18rem] bg-blue-900 mt-4 text-white">
-                    Add To Wishlist
+                    Add To Wishlist  
                   </button>
                 </Link>
               </div>

@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ecomcontext } from "../context/EcomContext";
 import { useAuth } from "../context/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
@@ -7,18 +7,16 @@ import { FaHeart } from "react-icons/fa";
 import { useAdminAuth } from "../admin/context/AdminAuthProvider";
 
 function Header() {
-  const { fetchWishlist } = useContext(ecomcontext);
-  const [wishlist, setWishlist] = useState([]);
+  const {wishlist ,fetchWishlist } = useContext(ecomcontext);
   const { isUserLoggedIn, logout } = useAuth();
   const { isAdminLoggedIn, adminLogout } = useAdminAuth();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isAdminLoggedIn]);
 
   async function fetchData() {
-    const data = await fetchWishlist();
-    setWishlist(data);
+   await fetchWishlist();
   }
   // console.log(wishlist);
   
@@ -26,7 +24,6 @@ function Header() {
   return (
     <header className="flex justify-between px-12 py-2 bg-green-300 fixed top-0 right-0 left-0 ">
       <Link to="/">
-        {" "}
         <h2 className="text-2xl font-bold">Ecommerce</h2>
       </Link>
       <nav>

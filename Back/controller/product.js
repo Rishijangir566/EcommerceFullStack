@@ -6,7 +6,7 @@ import ProductModelData from "../models/productModel.js";
 export async function addToProduct(req, res) {
   try {
     const file = req.file;
-    if (!file) return res.status(404).send({ message: "file not found" });
+    if (!file) return res.status(404).send({ message: "file not found"});
     const secure_url = await uploadToCloudinary(req);
 
     const categoryObjectId = new mongoose.Types.ObjectId(req.body.category);
@@ -21,19 +21,18 @@ export async function addToProduct(req, res) {
     res
       .status(500)
       .send({ message: "product not found", Error: error.message });
-  }
+   }
 }
 
 export async function fetchProducts(req, res) {
   try {
     let query = {};
     if (req.params.id) {
-      // query._id = req.params.id;
       query.slug = req.params.id;
     }
 
     if (req.query.category) {
-     query.category= new mongoose.Types.ObjectId(req.query.category)
+      query.category = new mongoose.Types.ObjectId(req.query.category);
     }
     // console.log(req.query);
     if (req.query.categoryName) {

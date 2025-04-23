@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
    image:{ type:String},
    wishlist:[
-    {type:mongoose.Schema.Types.ObjectId,ref:"product"}
+    {type:String}
    ],
    role:{
     type:String,

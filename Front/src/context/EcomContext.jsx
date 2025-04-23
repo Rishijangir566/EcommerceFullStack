@@ -7,6 +7,7 @@ export const ecomcontext = createContext();
 function EcomContext({ children }) {
   const [loading, setLoading] = useState(true);
   const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [dealProducts, setDealProducts] = useState([]);
 
   async function fetchProducts() {
@@ -71,40 +72,40 @@ function EcomContext({ children }) {
       setLoading(false);
     }
   }
-
+  
   async function handleDelete(idToDelete, whatTodelete) {
     try {
       const response = await instance.delete(`/product/${idToDelete}`);
       if (response.status === 200) {
         window.location.href =
-          whatTodelete === "product" ? "/admin/products" : "/admin/categories";
+        whatTodelete === "product" ? "/admin/products" : "/admin/categories";
       }
     } catch (error) {
       console.log(error);
     }
   }
-
+  
   async function addToCart(product) {
     const existingCartItem = cart.find(
       (item) => item.product._id === product._id
     );
-    try {
-      if (existingCartItem) {
-        setCart(
-          cart.map((item) =>
-            item.product._id === product._id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          )
-        );
-      } else {
-        setCart([...cart, { product, quantity: 1 }]);
-      }
-    } catch (error) {
-      console.log("product not added to cart", error);
-    }
+    if (existingCartItem) {
+      setCart(
+        cart.map((item) =>
+          item.product._id === product._id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+      )
+    );
+  } else {
+    setCart([...cart, { product, quantity: 1 }]);
+  }
+  
   }
 
+ 
+
+  
   function removeFromCart(productId) {
     setCart(cart.filter((item) => item.product._id !== productId));
   }
@@ -141,18 +142,18 @@ function EcomContext({ children }) {
         withCredentials: true,
       });
       const wishlistData = response.data.wishlist;
-      console.log(wishlistData);
+      // console.log(wishlistData);
 
       const populatedWishlist = await Promise.all(
-        wishlistData.map(async (productId) => {
+        wishlistData.map(async (productSlug) => {
           const productResponse = await instance.get(
-            `/product/get/${productId.slug}`
+            `/product/get/${productSlug}`,{withCredentials:true}
           );
           return { product: productResponse.data.products[0] };
         })
       );
-      console.log(populatedWishlist);
-      return populatedWishlist;
+      // console.log(populatedWishlist);
+      setWishlist(populatedWishlist);
     } catch (error) {
       console.log(error);
     }
@@ -170,11 +171,25 @@ function EcomContext({ children }) {
         );
         console.log(response.data);
         if (response.status === 200) {
-          return response.data.user.wishlist;
+          setWishlist ([...wishlist,response.data.wishlist])
         }
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+
+   
+  async function removeFromWishlist(productSlug) {
+    try {
+      // console.log(productSlug);
+      
+      const response = await instance.delete(`/user/deleteWishlist/${productSlug}`,{withCredentials:true});
+      console.log(response.data);
+
+      
+    } catch (error) {
+      console.log("error",error);
     }
   }
 
@@ -191,7 +206,8 @@ function EcomContext({ children }) {
         loading,
         dealProducts,
         cart,
-        fetchWishlist,
+        wishlist,
+        removeFromWishlist,
         fetchSingleProducts,
         addToCart,
         removeFromCart,
@@ -202,6 +218,7 @@ function EcomContext({ children }) {
         fetchHotDeals,
         handleDelete,
         existInWishlist,
+        fetchWishlist,
         addToWishlist,
       }}
     >

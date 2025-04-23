@@ -16,14 +16,14 @@ function NoProductsFoundBanner() {
 function ShopByCategory() {
   const { categoryName } = useParams();
 
-  const { filterByCategory, loading ,fetchCategory} = useContext(ecomcontext);
+  const { filterByCategory, loading, fetchCategory } = useContext(ecomcontext);
   const [productByCat, setProductByCat] = useState([]);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     if (categoryName) {
       fetchCategoryData();
-      fetchData()
+      fetchData();
     }
   }, [categoryName]);
 
@@ -46,11 +46,13 @@ function ShopByCategory() {
       <div className="section w-[full] flex flex-wrap gap-8 h-screen ">
         <aside className="sidebar w-[20%] pl-4  pt-4 border-gray-600 border-r-2 bg-gray-200">
           <div className="  sticky top-20 ">
-            <h2 className="text-blue-800 ml-8 text-2xl font-bold mt-2 ">
-              Category
-            </h2>
+            <Link to="/" className="cursor-pointer">
+              <h2 className="text-blue-800 ml-8 text-2xl font-bold mt-2">
+                Category
+              </h2>
+            </Link>
             <div className="categorylist ">
-            {categories.length > 0 &&
+              {categories.length > 0 &&
                 categories.map((category, index) => {
                   return (
                     <li key={index} className="list-none mx-5 mt-4 font-bold">

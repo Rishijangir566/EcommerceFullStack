@@ -25,12 +25,11 @@ function Home() {
   useEffect(() => {
     getProductByCat();
   }, [params]);
-  
+
   async function getProductByCat() {
     const productByCat = await filterByCategory(params.categoryName, true);
     setProductByCat(productByCat);
   }
-  
 
   return loading ? (
     <Loader />
@@ -39,11 +38,13 @@ function Home() {
       <div className="section w-[full] flex flex-wrap gap-8 h-screen ">
         <aside className="sidebar w-[20%]  pl-4 pt-4 border-gray-600 border-r-2 bg-gray-200">
           <div className="  sticky top-20 ">
-            <h2 className="text-blue-800 ml-8 text-2xl font-bold mt-2 ">
-              Category{" "}
-            </h2>
+            <Link to="/" className="cursor-pointer">
+              {" "}
+              <h2 className="text-blue-800 ml-8 text-2xl font-bold mt-2">
+                Category
+              </h2>
+            </Link>
             <div className="categorylist my-4 ">
-              <Link to={"/product"} className="list-none mx-10 my-4 font-bold">All</Link>
               {categories?.length > 0 &&
                 categories.map((category, index) => {
                   return (
@@ -69,8 +70,7 @@ function Home() {
           <DisplayProduct
             product={productByCat?.product?.length > 0 ? productByCat : product}
           />
-          
-        </div> 
+        </div>
       </div>
     </>
   );
