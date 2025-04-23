@@ -4,10 +4,10 @@ import "dotenv/config"
 import Admin from "../models/adminModel.js";
 
 // user login auth check
-export async function check(req, res, next) {
+export async function   check(req, res, next) {
 
 
-    const token = req.cookies.loginToken;
+    const token = req.cookies.LoginToken;
     if (!token) return res.status(401).send({ message: "No Token Found" })
 
     // verify token 

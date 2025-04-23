@@ -50,9 +50,9 @@ export async function loginUser(req, res) {
 
     res
       .cookie("loginToken", loginToken, {
-        httpOnly: false,
+        httpOnly: true,
         secure: false,
-        sameSite: "strict", // strict / lax / none
+        sameSite: "none", // strict / lax / none
         maxAge: 3600000,
       })
       .send({ message: "Login Successful", user: user });
