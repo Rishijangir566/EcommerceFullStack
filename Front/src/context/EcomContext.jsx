@@ -38,14 +38,15 @@ function EcomContext({ children }) {
     }
   }
 
-  async function filterByCategory(category, isName = false) {
+  async function filterByCategory(categoryName, isName ) {
     try {
       setLoading(true);
       // const response = await instance.get(`/product/?category=${category}`)
       const url = isName
         ? "/product/get/?categoryName="
         : "/product/get/?category=";
-      const response = await instance.get(url + category);
+
+      const response = await instance.get(url + categoryName);
       console.log(response.data);
       return response.data;
     } catch (error) {
