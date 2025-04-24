@@ -32,6 +32,8 @@ export async function loginUser(req, res) {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).send({ message: "Email not Found" });
 
+    console.log(email, password, user);
+
     const passwordMatches = await bcrypt.compare(password, user.password);
     if (!passwordMatches)
       return res.status(401).send({ message: "Invaild Credintials" });
@@ -46,7 +48,7 @@ export async function loginUser(req, res) {
       }
     );
 
-    // console.log("loginToken", loginToken);
+    console.log("loginToken", loginToken);
 
     res
       .cookie("loginToken", loginToken, {
@@ -142,15 +144,15 @@ export async function deleteWishlist(req, res) {
         .status(404)
         .send({ message: "Product not found in the wishlist" });
 
-      const user=await User.findByIdAndUpdate(
-       id,
-       {$pull:{wishlist:productSlug}},
-       {new:true}
-     );
-     console.log("user",user);
+    const user = await User.findByIdAndUpdate(
+      id,
+      { $pull: { wishlist: productSlug } },
+      { new: true }
+    );
+    console.log("user", user);
 
-     if(!user) return res.status(404).send({message:"User not found"});
-     return res.send({message:"Product removed from wishlist",user});
+    if (!user) return res.status(404).send({ message: "User not found" });
+    return res.send({ message: "Product removed from wishlist", user });
   } catch (error) {
     return res.status(500).send({ errorString: error.message });
   }
