@@ -10,7 +10,7 @@ adminRouter.post("/logout", async (req, res) => {
     try {
         res.clearCookie("adminToken", {
             httpOnly: false,
-            secure: false,
+            secure: true,
             sameSite: "strict"
 
         })
