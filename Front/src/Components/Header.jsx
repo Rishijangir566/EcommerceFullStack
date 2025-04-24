@@ -13,12 +13,12 @@ function Header() {
 
   useEffect(() => {
     fetchData();
-  }, [isAdminLoggedIn]);
+  }, [isUserLoggedIn]);
 
   async function fetchData() {
-   await fetchWishlist();
+    await fetchWishlist();
   }
-  // console.log(wishlist);
+  console.log("login ss",isUserLoggedIn);
   
 
   return (
@@ -29,7 +29,7 @@ function Header() {
       <nav>
         <ul className="flex py-1 mx-4  font-medium ">
           <li className="mx-4">
-            <Link to="/">Home</Link>{" "}
+            <Link to="/">Home</Link>
           </li>
 
           <li className="mx-4">

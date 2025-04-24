@@ -10,7 +10,7 @@ authRouter.get("/check" , check,(req, res)=>{
 
 authRouter.post("/logout",async(req,res)=>{
     try{
-        res.clearCookie("loginToken",{
+        res.clearCookie("LoginToken",{
             httpOnly:true,
             secure:false,
             sameSite:"none"

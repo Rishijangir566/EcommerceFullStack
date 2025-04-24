@@ -143,7 +143,7 @@ function EcomContext({ children }) {
         withCredentials: true,
       });
       const wishlistData = response.data.wishlist;
-      // console.log(wishlistData);
+      console.log(wishlistData);
 
       const populatedWishlist = await Promise.all(
         wishlistData.map(async (productSlug) => {
