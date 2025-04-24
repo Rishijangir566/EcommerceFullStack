@@ -31,7 +31,7 @@ export async function loginAdmin(req, res) {
  
        res.cookie("adminToken", adminToken, {
           httpOnly:true,
-          secure: true,
+          secure: false,
           sameSite: "none", // strict / lax / none
           maxAge: 3600000,
        }).send({ message: "Admin Login Successful", admin: admin })
@@ -63,7 +63,7 @@ export async function loginAdmin(req, res) {
    try {
        res.clearCookie("adminToken", {
            httpOnly: true,
-           secure: true,
+           secure: false,
            sameSite: "none"
 
        })
