@@ -36,14 +36,14 @@ function DisplayProduct({ product }) {
                 {/* .split(" ").slice(0, 3).join(" ") + "..."  */}
                 {/* <p className=" my-1"><span className='text-red-700 font-bold' > Discounted Price :</span> $ {item.discountPrice}</p> */}
                 <p className=" my-1 font-bold ml-8 ">
-                  {" "}
+                  
                   Price : $ {item.discountPrice + "  "}
                   <s>
                     <span className="font-light text-red-500 text-sm">
-                      {" "}
-                      {item.usualPrice}{" "}
+                      
+                      {item.usualPrice}
                     </span>
-                  </s>{" "}
+                  </s>
                 </p>
                 <Link
                   to={

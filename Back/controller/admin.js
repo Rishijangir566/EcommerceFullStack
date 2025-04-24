@@ -58,3 +58,22 @@ export async function loginAdmin(req, res) {
        .send({ message: "Unable to count numbers", errorString: error.message });
    }
  }
+
+ export async function logoutAdmin (req, res) {
+   try {
+       res.clearCookie("adminToken", {
+           httpOnly: false,
+           secure: true,
+           sameSite: "none"
+
+       })
+       res.status(200).send({ message: "logged out" })
+   } catch (error) {
+       console.log(error)
+       return res.status(500).send({ error: error.message })
+   }
+}
+
+export async function adminMessage(req, res){
+  await res.send({ message: "admin Authnticated",admin:req.admin });
+}
