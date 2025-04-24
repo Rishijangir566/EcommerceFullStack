@@ -10,7 +10,8 @@ function Header() {
   const {wishlist ,fetchWishlist } = useContext(ecomcontext);
   const { isUserLoggedIn, logout } = useAuth();
   const { isAdminLoggedIn, adminLogout } = useAdminAuth();
-
+  
+  console.log("login ",isUserLoggedIn);
   useEffect(() => {
     fetchData();
   }, [isUserLoggedIn]);
@@ -18,7 +19,7 @@ function Header() {
   async function fetchData() {
     await fetchWishlist();
   }
-  console.log("login ss",isUserLoggedIn);
+  console.log("login ",isUserLoggedIn);
   
 
   return (

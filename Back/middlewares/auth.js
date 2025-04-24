@@ -7,7 +7,7 @@ import Admin from "../models/adminModel.js";
 export async function   check(req, res, next) {
 
 
-    const token = req.cookies.LoginToken;
+    const token = req.cookies.loginToken;
     if (!token) return res.status(401).send({ message: "No Token Found" })
 
     // verify token 
