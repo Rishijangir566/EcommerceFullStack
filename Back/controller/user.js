@@ -57,7 +57,8 @@ export async function loginUser(req, res) {
         sameSite: "none", // strict / lax / none
         maxAge: 3600000,
       })
-      .send({ message: "Login Successful", user: user });
+      .status(200)
+      .json({ message: "Login Successful", user: user });
   } catch (error) {
     console.log(error);
     return res
