@@ -59,7 +59,7 @@ function Header() {
             </Link>
           </li>
           <li className="relative ml-3">
-            <Link to="/cart/fetchcart ">
+            <Link to="/cart/fetchcart">
               
               <FaShoppingCart className="text-xl mt-1" />
             </Link>

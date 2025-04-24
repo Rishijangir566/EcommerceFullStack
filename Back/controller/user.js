@@ -32,7 +32,7 @@ export async function loginUser(req, res) {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).send({ message: "Email not Found" });
 
-    console.log(email, password, user);
+    // console.log(email, password, user);
 
     const passwordMatches = await bcrypt.compare(password, user.password);
     if (!passwordMatches)
@@ -48,7 +48,7 @@ export async function loginUser(req, res) {
       }
     );
 
-    console.log("loginToken", loginToken);
+    // console.log("loginToken", loginToken);
 
     res
       .cookie("loginToken", loginToken, {
