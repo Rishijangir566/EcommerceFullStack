@@ -30,7 +30,7 @@ export async function loginAdmin(req, res) {
       //  console.log("adminToken", adminToken);
  
        res.cookie("adminToken", adminToken, {
-          httpOnly: false,
+          httpOnly:true,
           secure: true,
           sameSite: "none", // strict / lax / none
           maxAge: 3600000,
@@ -62,7 +62,7 @@ export async function loginAdmin(req, res) {
  export async function logoutAdmin (req, res) {
    try {
        res.clearCookie("adminToken", {
-           httpOnly: false,
+           httpOnly: true,
            secure: true,
            sameSite: "none"
 
