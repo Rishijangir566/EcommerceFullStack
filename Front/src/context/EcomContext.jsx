@@ -153,7 +153,7 @@ function EcomContext({ children }) {
           return { product: productResponse.data.products[0] };
         })
       );
-      // console.log(populatedWishlist);
+      console.log(populatedWishlist);
       setWishlist(populatedWishlist);
     } catch (error) {
       console.log(error);

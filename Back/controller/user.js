@@ -13,7 +13,7 @@ export async function registerUser(req, res) {
       name,
       email,
       password: hasedPassword,
-      role: "user",
+      wishlist:[]
     });
     await newuser.save();
 

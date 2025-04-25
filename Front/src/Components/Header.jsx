@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { ecomcontext } from "../context/EcomContext";
 import { useAuth } from "../context/AuthProvider";
@@ -11,7 +11,6 @@ function Header() {
   const { isUserLoggedIn, logout } = useAuth();
   const { isAdminLoggedIn, adminLogout } = useAdminAuth();
   
-  console.log("login ",isUserLoggedIn);
   useEffect(() => {
     fetchData();
   }, [isUserLoggedIn]);
@@ -19,9 +18,10 @@ function Header() {
   async function fetchData() {
     await fetchWishlist();
   }
-  console.log("login ",isUserLoggedIn);
   
-
+if(!isUserLoggedIn){
+  wishlist.length=0
+}
   return (
     <header className="flex justify-between px-12 py-2 bg-green-300 fixed top-0 right-0 left-0 ">
       <Link to="/">
@@ -43,7 +43,7 @@ function Header() {
                 Logout
               </Link>
             ) : (
-              <NavLink to="/user/login">Login</NavLink>
+              <Link to="/user/login">Login</Link>
             )}
           </li>
           <li>
