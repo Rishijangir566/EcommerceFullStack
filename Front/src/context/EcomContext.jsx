@@ -38,7 +38,7 @@ function EcomContext({ children }) {
     }
   }
 
-  async function filterByCategory(categoryName, isName ) {
+  async function filterByCategory(categoryName, isName) {
     try {
       setLoading(true);
       // const response = await instance.get(`/product/?category=${category}`)
@@ -73,60 +73,82 @@ function EcomContext({ children }) {
       setLoading(false);
     }
   }
-  
+
   async function handleDelete(idToDelete, whatTodelete) {
     try {
       const response = await instance.delete(`/product/${idToDelete}`);
       if (response.status === 200) {
         window.location.href =
-        whatTodelete === "product" ? "/admin/products" : "/admin/categories";
+          whatTodelete === "product" ? "/admin/products" : "/admin/categories";
       }
     } catch (error) {
       console.log(error);
     }
   }
-  
-  async function addToCart(product) {
-    const existingCartItem = cart.find(
-      (item) => item.product._id === product._id
-    );
-    if (existingCartItem) {
-      setCart(
-        cart.map((item) =>
-          item.product._id === product._id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-      )
-    );
-  } else {
-    setCart([...cart, { product, quantity: 1 }]);
+
+  async function addToCart(product, quantity = 1) {
+    try {
+      const response = await instance.post(
+        `/cart/add`,
+        { productSlug: product, quantity },
+        {
+          withCredentials: true,
+        }
+      );
+      // console.log(response);
+      if (response.status === 200) {
+              setCart(response.data.updateCart.items)
+            }else{
+              console.log("error ");
+              
+            }
+    } catch (error) {
+      console.log(error, "cart error");
+    }
   }
-  
+  // console.log("cartt", cart);
+
+  async function fetchCart() {
+    try {
+      const response = await instance.get("/cart/fetchCart", {
+        withCredentials: true,
+      });
+      return response.data.items;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
  
 
-  
-  function removeFromCart(productId) {
-    setCart(cart.filter((item) => item.product._id !== productId));
+  async function updateQuantity(productId, action) {
+    try {
+      const response = await instance.put(
+        `/cart/updateQuantity`,{productId, operation: action},
+        { withCredentials: true }
+      );
+      console.log(response.data.items);
+      setCart(response.data.items)
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
-  function updateQuantity(productId, action) {
-    setCart(
-      cart.map((item) =>
-        item.product._id === productId
-          ? {
-              ...item,
-              quantity:
-                action === "increment"
-                  ? item.quantity + 1
-                  : Math.max(item.quantity - 1, 1),
-            }
-          : item
-      )
-    );
-  }
 
+
+  async function removeFromCart(productId) {
+    try {
+      const response = await instance.delete(
+        `/cart/removeProduct/${productId}`,
+        { withCredentials: true }
+      );
+      console.log(response.data);
+      setCart(response.data.items);
+     
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   async function fetchHotDeals() {
     try {
@@ -143,12 +165,13 @@ function EcomContext({ children }) {
         withCredentials: true,
       });
       const wishlistData = response.data.wishlist;
-      console.log(wishlistData);
+      // console.log(wishlistData);
 
       const populatedWishlist = await Promise.all(
         wishlistData.map(async (productSlug) => {
           const productResponse = await instance.get(
-            `/product/get/${productSlug}`,{withCredentials:true}
+            `/product/get/${productSlug}`,
+            { withCredentials: true }
           );
           return { product: productResponse.data.products[0] };
         })
@@ -172,7 +195,7 @@ function EcomContext({ children }) {
         );
         console.log(response.data);
         if (response.status === 200) {
-          setWishlist ([...wishlist,response.data.wishlist])
+          setWishlist([...wishlist, response.data.wishlist]);
         }
       }
     } catch (error) {
@@ -180,17 +203,17 @@ function EcomContext({ children }) {
     }
   }
 
-   
   async function removeFromWishlist(productSlug) {
     try {
       // console.log(productSlug);
-      
-      const response = await instance.delete(`/user/deleteWishlist/${productSlug}`,{withCredentials:true});
-      console.log(response.data);
 
-      
+      const response = await instance.delete(
+        `/user/deleteWishlist/${productSlug}`,
+        { withCredentials: true }
+      );
+      console.log(response.data);
     } catch (error) {
-      console.log("error",error);
+      console.log("error", error);
     }
   }
 
@@ -199,6 +222,10 @@ function EcomContext({ children }) {
       withCredentials: true,
     });
     return response.data.exists ? true : false;
+  }
+
+  function clearWishlist(){
+    setWishlist([])
   }
 
   return (
@@ -213,6 +240,7 @@ function EcomContext({ children }) {
         addToCart,
         removeFromCart,
         updateQuantity,
+        fetchCart,
         fetchProducts,
         fetchCategory,
         filterByCategory,
@@ -221,6 +249,7 @@ function EcomContext({ children }) {
         existInWishlist,
         fetchWishlist,
         addToWishlist,
+        clearWishlist
       }}
     >
       {children}

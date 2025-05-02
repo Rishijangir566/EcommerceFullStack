@@ -11,8 +11,8 @@ authRouter.get("/check" , check,(req, res)=>{
 authRouter.post("/logout",async(req,res)=>{
     try{
         res.clearCookie("loginToken",{
-            httpOnly:true,
-            secure:false,
+            httpOnly:false,
+            secure:true,
             sameSite:"none"
         })
         res.status(200).send({message:"logged out"})

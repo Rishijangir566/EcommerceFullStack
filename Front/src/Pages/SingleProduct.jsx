@@ -64,33 +64,28 @@ function SingleProduct() {
         </div>
         <div className="right w-[60%]">
           <h2>
-            {" "}
             <strong>Name : </strong>
             {product.title}
           </h2>
           <h2>
-            {" "}
             <strong>Brand : </strong>
             {product.brand}
           </h2>
           <h2>
-            {" "}
             <strong>Category : </strong>
             {categoryName?.name}
           </h2>
           <h2>
-            {" "}
             <strong>Price : </strong>
             {product.usualPrice}
           </h2>
           <h2>
-            {" "}
             <strong>Description : </strong>
             {product.description}
           </h2>
           <div className="flex gap-3 py-2">
             <Link
-              className="rounded px-2 py-1 bg-blue-600 text-white"
+              className="rounded px-2 py-1 bg-blue-600 text-white "
               onClick={handleAddToCart}
             >
               Add To Cart

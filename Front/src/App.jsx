@@ -36,10 +36,10 @@ const router = createBrowserRouter([
         element:<WishList />
       },
       {
-        path: "/cart/fetchcart",
+        path: "/cart",
         element:(
         <ProtectedRoute >
-          <Cart destination="user/login" />
+          <Cart fallback="user/login" />
           </ProtectedRoute> )
       },
 
