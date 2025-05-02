@@ -142,7 +142,7 @@ function EcomContext({ children }) {
         `/cart/removeProduct/${productId}`,
         { withCredentials: true }
       );
-      console.log(response.data);
+      console.log(response.data.items);
       setCart(response.data.items);
      
     } catch (error) {

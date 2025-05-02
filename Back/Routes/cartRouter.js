@@ -9,6 +9,6 @@ cartRouter.get("/fetchCart",check ,fetchCart)
 cartRouter.post("/add",check ,addToCart)
 cartRouter.get("/checkInCart/:slug",check ,checkInCart)
 cartRouter.put("/updateQuantity" ,check,updateCartQuantity)
-cartRouter.delete("/removeProduct/:id", check, removeFromCart)
+cartRouter.delete("/removeProduct/:productId", check, removeFromCart)
 
 export default cartRouter;
