@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { ecomcontext } from "../context/EcomContext";
-import { Link } from "react-router-dom";
-import { MdCurrencyRupee } from "react-icons/md";
+// import { Link } from "react-router-dom";
+// import { MdCurrencyRupee } from "react-icons/md";
 import Loader from "../Components/Loader";
 
 function WishList() {
-  const { wishlist, fetchWishlist, removeFromWishlist } =
+  const { wishlist, fetchWishlist, removeFromWishlist ,addToCart} =
     useContext(ecomcontext);
   const [loading, setLoading] = useState(false);
 
@@ -25,55 +25,72 @@ function WishList() {
     await fetchWishlist();
     setLoading(false);
   }
+
+  async function handleAddToCart(productSlug) {
+    setLoading(true);
+    await addToCart(productSlug);
+    await fetchWishlist();
+    setLoading(false);
+  }
   
   if (loading) return <Loader />;
   return (
     <>
-      <div className="mt-16">
-        {wishlist &&
-          wishlist.map((item) => {
-            return (
-              <div
-                key={item?.product?._id}
-                className="flex items-center gap-5 border m-5 rounded-2xl py-3"
-              >
-                <img
-                  src={item?.product?.image}
-                  alt=""
-                  className="w-[130px] h-[140px] mx-5"
-                />
-                <div className="flex flex-col gap-3 text-lg ">
-                  <div className="flex gap-2 font-medium">
-                    <p className="text-2xl/6">
-                      <strong>{item?.product?.brand}</strong>
-                    </p>
-                    <p>{item?.product?.title}</p>
-                  </div>
-                  <div className="flex text-lg/4">
-                    <MdCurrencyRupee className=" text-blue-600 text-lg" />
-                    <span className="text-blue-600 font-bold">
-                      {item?.product?.discountPrice}
-                    </span>
-                  </div>
+     <div className="my-24 px-6 grid gap-6">
+  {wishlist &&
+    wishlist.map((item) => (
+      <div
+        key={item?.product?._id}
+        className="flex flex-col md:flex-row gap-6 p-5 bg-white rounded-xl shadow-lg border hover:shadow-xl transition duration-300"
+      >
+        {/* Image */}
+        <img
+          src={item?.product?.image}
+          alt={item?.product?.title}
+          className="w-full md:w-[160px] h-[160px] object-contain rounded-md bg-gray-50"
+        />
 
-                  <p className="pr-20">{item?.product?.description}</p>
+        {/* Details */}
+        <div className="flex-1 flex flex-col justify-between">
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold text-gray-800">
+              {item?.product?.brand}
+            </h2>
+            <p className="text-gray-700 text-base">
+              {item?.product?.title}
+            </p>
 
-                  <div className="flex gap-3 py-2">
-                    <Link
-                      className="rounded px-2 py-1 bg-red-600 text-white"
-                      onClick={() => handleRemove(item.product.slug)}
-                    >
-                      Remove
-                    </Link>
-                    <Link className="rounded px-2 py-1 bg-green-600 text-white">
-                      Add to Cart
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+            <p className="text-gray-600 text-sm line-clamp-2">
+              {item?.product?.description}
+            </p>
+
+            <div className="flex items-center gap-2 text-lg font-bold text-blue-700">
+              ₹{item?.product?.discountPrice}
+              <s className="text-sm text-red-500 font-normal">
+                ₹{item?.product?.usualPrice}
+              </s>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex flex-wrap gap-4 mt-4">
+            <button
+              onClick={() => handleRemove(item.product.slug)}
+              className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition duration-200 text-sm"
+            >
+              Remove
+            </button>
+            <button
+            onClick={() => handleAddToCart(item.product.slug)}
+              className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition duration-200 text-sm"
+            >
+              Move to Cart
+            </button>
+          </div>
+        </div>
       </div>
+    ))}
+</div>
     </>
   );
 }

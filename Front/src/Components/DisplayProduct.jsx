@@ -6,60 +6,54 @@ import { Link } from "react-router-dom";
 function DisplayProduct({ product }) {
  
   return (
-    <div className="flex justify-around  gap-8 flex-wrap my-20   ">
-      {product?.products?.length > 0
-        ? product?.products?.map((item) => {
-            return (
-              <div
-                key={item._id}
-                className=" w-[18rem] h-[22rem] shadow shadow-black "
-              >
-                <Link
-                  to={
-                    item.slug ? `/product/${item.slug}` : `/product/${item._id}`
-                  }
-                >
-                  {" "}
-                  <img
-                    className="object-contain w-[18rem] h-[14rem] p-4  "
-                    src={item.image}
-                  />{" "}
-                </Link>
+  <div className="flex justify-center flex-wrap gap-8 my-20  ">
+  {product?.products?.length > 0 &&
+    product.products.map((item) => (
+      <div
+        key={item._id}
+        className="w-[14rem] bg-gray-100 rounded shadow-md hover:shadow-xl transition duration-300 overflow-hidden border border-gray-200"
+      >
+        <Link
+          to={item.slug ? `/product/${item.slug}` : `/product/${item._id}`}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className="object-contain w-full h-[10rem] p-3 bg-gray-100"
+          />
+        </Link>
 
-                <h2 className="mt-4 font-medium ml-8">
-                  <span className=" font-bold w-[17rem]">
-                    {" "}
-                    {item.brand + " :"}{" "}
-                  </span>
-                  {item.title.split(" ").slice(0, 2).join(" ") + "..."}{" "}
-                </h2>
-                {/* .split(" ").slice(0, 3).join(" ") + "..."  */}
-                {/* <p className=" my-1"><span className='text-red-700 font-bold' > Discounted Price :</span> $ {item.discountPrice}</p> */}
-                <p className=" my-1 font-bold ml-8 ">
-                  
-                  Price : $ {item.discountPrice + "  "}
-                  <s>
-                    <span className="font-light text-red-500 text-sm">
-                      
-                      {item.usualPrice}
-                    </span>
-                  </s>
-                </p>
-                <Link
-                  to={
-                    item.slug ? `/product/${item.slug}` : `/product/${item._id}`
-                  }
-                >
-                  
-                  <button className="py-1 w-[18rem] bg-blue-900 mt-4 text-white">
-                    Add To Wishlist  
-                  </button>
-                </Link>
-              </div>
-            );
-          })
-        : ""}
-    </div>
+        <div className="p-3">
+          <h3 className="text-sm font-semibold text-gray-700 truncate">
+            Brand: <span className="text-gray-900">{item.brand}</span>
+          </h3>
+
+          <h2 className="text-sm text-gray-600 mt-1 truncate">
+            Name:{" "}
+            <span className="font-medium">
+              {item.title.split(" ").slice(0, 2).join(" ") + "..."}
+            </span>
+          </h2>
+
+          <p className="mt-2 text-base font-bold text-green-700">
+            ${item.discountPrice}
+            <s className="ml-2 text-sm font-normal text-red-500">
+              ${item.usualPrice}
+            </s>
+          </p>
+
+          <Link
+            to={item.slug ? `/product/${item.slug}` : `/product/${item._id}`}
+          >
+            <button className="mt-4 w-full py-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold rounded-md transition">
+              Add To Wishlist
+            </button>
+          </Link>
+        </div>
+      </div>
+    ))}
+</div>
+
   );
 }
 
