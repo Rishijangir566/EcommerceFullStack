@@ -96,7 +96,7 @@ function Cart() {
                             updateQuantityCart(item.product._id, "-")
                           }
                         >
-                          -
+                -
                         </p>
                       )}
 

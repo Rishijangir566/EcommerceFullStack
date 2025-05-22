@@ -22,7 +22,11 @@ function Header() {
     const cart = await fetchCart();
     setCart(cart);
   }
-  // console.log(isUserLoggedIn , "user");
+
+  
+if(!isUserLoggedIn){
+  wishlist.length=0
+}
 
   return (
     <header className="flex justify-between items-center px-8 md:px-12 py-3 bg-white shadow-md fixed top-0 right-0 left-0 z-50">
@@ -61,12 +65,15 @@ function Header() {
                 Logout
               </Link>
             ) : (
+
               <Link
                 className="hover:text-green-600 transition-colors"
                 to="/user/login"
               >
                 Login
               </Link>
+              // <Link to="/user/login">Login</Link>
+
             )}
           </li>
 
