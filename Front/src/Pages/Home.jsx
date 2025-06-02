@@ -35,38 +35,45 @@ function Home() {
     <Loader />
   ) : (
     <>
-      <div className="section w-[full] flex flex-wrap gap-8 h-screen ">
-        <aside className="sidebar w-[20%]  pl-4 pt-4 border-gray-600 border-r-2 bg-gray-200">
-          <div className="  sticky top-20 ">
-            <Link to="/" className="cursor-pointer">
-              {" "}
-              <h2 className="text-blue-800 ml-8 text-2xl font-bold mt-2">
-                Category
-              </h2>
+      <div className="section flex flex-col md:flex-row gap-4 md:gap-8 px-4 ">
+        {/* Sidebar */}
+        <aside className="w-full md:w-[20%] border-r border-gray-300 bg-gray-100 md:sticky md:top-[5rem] rounded-md shadow-sm px-4 py-18">
+          <Link to="/" className="block mb-4">
+            <h2 className="text-blue-600 text-2xl font-bold pl-4">
+              Category
+            </h2>
+          </Link>
+
+          <ul className="space-y-2">
+            {categories?.length > 0 &&
+              categories.map((category, index) => (
+                <li key={index} className="list-none uppercase">
+                  <NavLink
+                    to={`/category/${category.name.toLowerCase()}`}
+                    className={({ isActive }) =>
+                      `block px-4 py-2 rounded-md text-gray-700 hover:bg-green-200 transition ${
+                        isActive ? "bg-green-300 font-semibold " : ""
+                      }`
+                    }
+                  >
+                    {category.name}
+                  </NavLink>
+                </li>
+              ))}
+          </ul>
+
+          <div className="mt-6">
+            <Link
+              to="/hotDeals"
+              className="block text-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md font-semibold transition"
+            >
+              🔥 Hot Deals
             </Link>
-            <div className="categorylist my-4 ">
-              {categories?.length > 0 &&
-                categories.map((category, index) => {
-                  return (
-                    <li key={index} className="list-none mx-5 mt-4 font-bold">
-                      <NavLink
-                        to={`/category/${category.name.toLowerCase()}`}
-                        className="block w-full px-4 py-1 hover:bg-gray-500 dark:hover:bg-gray-600 dark:hover:text-white text-left"
-                      >
-                        {category.name}
-                      </NavLink>
-                    </li>
-                  );
-                })}
-            </div>
-            <div className="px-4 py-2 mx-4 text-white font-medium mt-8 bg-red-900 ">
-              <li className=" list-none ">
-                <Link to="/hotDeals"> Hot Deals</Link>{" "}
-              </li>
-            </div>
           </div>
         </aside>
-        <div className="productDisplay w-[75%]">
+
+        {/* Product Display */}
+        <div className="w-full md:w-[80%]">
           <DisplayProduct
             product={productByCat?.product?.length > 0 ? productByCat : product}
           />

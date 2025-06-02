@@ -72,15 +72,13 @@ function Login() {
             type="submit"
             className="bg-green-300 py-1 my-8 rounded text-xl font-bold"
           >
-            {" "}
             Login
           </button>
         </form>
       </div>
       <p className="my-8">
-        New User ?{" "}
+        New User ?
         <Link to="/user/register" className="text-blue-700 ">
-          {" "}
           Register
         </Link>
       </p>

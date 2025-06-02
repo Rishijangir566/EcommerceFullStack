@@ -6,12 +6,17 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
    image:{ type:String},
    wishlist:[
-    {type:String}
+    {type:String ,unique:true}
    ],
    role:{
     type:String,
   default:"user"
-   }
+   },
+   appliedCoupon: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Coupon",
+    default: null,
+  },
 })
 
 const User = mongoose.model("User", userSchema)

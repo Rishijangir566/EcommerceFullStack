@@ -47,7 +47,7 @@ function EcomContext({ children }) {
         : "/product/get/?category=";
 
       const response = await instance.get(url + categoryName);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -153,6 +153,7 @@ function EcomContext({ children }) {
   async function fetchHotDeals() {
     try {
       const response = await instance.get("/deals", { withCredentials: true });
+      console.log(response.data);
       setDealProducts(response.data);
     } catch (error) {
       console.log(error);

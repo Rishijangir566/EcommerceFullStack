@@ -3,15 +3,24 @@ import { ecomcontext } from "../context/EcomContext"
 import { Link } from "react-router-dom"
 
 function AdminProducts() {
-    const { product, fetchProducts, handleDelete} = useContext(ecomcontext)
+    const { fetchProducts, handleDelete} = useContext(ecomcontext)
+    const[product,setProduct]=useState([])
     const [page, setPage ] = useState(1);
     useEffect(() => {
         if (page > 1) fetchProducts(page);
         else fetchProducts();
     }, [page]);
-    console.log(product);
 
-   
+     useEffect(() => {
+        initial();
+      }, []);
+
+    console.log(fetchProducts);
+
+    async function initial() {
+    const product = await fetchProducts();
+    setProduct(product);
+    }
 
     return (
         <div className="min-h-screen  flex">

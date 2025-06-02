@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { ecomcontext } from "../context/EcomContext";
 
 function AdminCategory() {
-    const { handleDelete,categories ,fetchCategory} = useContext(ecomcontext)
+    const { handleDelete ,fetchCategory} = useContext(ecomcontext)
+    const [categories, setCategories] = useState([]);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
@@ -11,7 +12,16 @@ function AdminCategory() {
         else fetchCategory();
       }, [page]);
 
-    //   console.log("categories", categories);
+      useEffect(() => {
+        initial();
+      }, []);
+
+    async function initial() {
+    const categories = await fetchCategory();
+    setCategories(categories);
+    }
+
+      // console.log("categories", categories);
 
     return (
         <div className="min-h-screen flex items-stretch ">
@@ -64,7 +74,7 @@ function AdminCategory() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((item, index) => {
+            {categories?.map((item, index) => {
               return (
                 <tr
                   key={item._id}
@@ -97,9 +107,9 @@ function AdminCategory() {
         </table>
 
         <div className="pagination my-3">
-          {categories.currentPage > 1 && (
+          {categories?.currentPage > 1 && (
             <Link
-              to={`?page=${categories.currentPage - 1}`}
+              to={`?page=${categories?.currentPage - 1}`}
               className="bg-blue-500 text-white p-1 rounded mx-2 px-2 cursor-pointer"
               onClick={() => setPage(categories.currentPage - 1)}
             >
@@ -107,7 +117,7 @@ function AdminCategory() {
             </Link>
           )}
 
-          {Array.from({ length: categories.totalPages }).map((_, index) => {
+          {Array.from({ length: categories?.totalPages }).map((_, index) => {
             return (
               <Link
                 key={index}
@@ -120,11 +130,11 @@ function AdminCategory() {
             );
           })}
 
-          {categories.currentPage < categories.totalPages && (
+          {categories?.currentPage < categories?.totalPages && (
             <Link
-              to={`?page=${categories.currentPage + 1}`}
+              to={`?page=${categories?.currentPage + 1}`}
               className="bg-blue-500 text-white p-1 rounded mx-2 px-2 cursor-pointer"
-              onClick={() => setPage(categories.currentPage + 1)}
+              onClick={() => setPage(categories?.currentPage + 1)}
             >
               Next
             </Link>

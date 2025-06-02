@@ -21,6 +21,7 @@ import AdminCategory from "./admin/AdminCategory"
 import AdminAuthProvider from "./admin/context/AdminAuthProvider"
 import AdminEcomProvider from "./admin/context/AdminEcomProvider"
 import WishList from "./Pages/WishList"
+import Coupon from "./Pages/Coupon"
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/hotDeals",
         element:<DisplayHotDeals />
+      },
+      {
+        path: "/addcoupon",
+        element:<Coupon />
       }
      
     ],

@@ -8,8 +8,10 @@ const adminSchema = new mongoose.Schema({
   role:{
     type:String,
     default:"admin"
-  }
+  },
+
 })
+
 
 const Admin = mongoose.model("Admin", adminSchema)
 export default Admin
