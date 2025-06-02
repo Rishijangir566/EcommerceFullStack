@@ -16,7 +16,7 @@ function ProtectedRoute({children}) {
       setLoading(true)
       if(children.props.fallback.startsWith("user/"))
         await instance.get("/auth/check",{withCredentials:true})
-      else await instance.get("/admin/check", { withCredentials: true });
+      else {await instance.get("/admin/check", { withCredentials: true });}
       setAllowed(true)
     } catch (error) {
       console.log(error);

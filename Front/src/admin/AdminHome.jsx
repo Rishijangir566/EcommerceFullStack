@@ -41,6 +41,12 @@ function AdminHome() {
             Users
           </Link>
         </li>
+        <li>
+          <Link to="/addcoupon" className="py-3 w-full inline-block">
+            Add Coupon
+          </Link>
+        </li>
+      
       </ul>
     </aside>
     <main className="w-4/5 p-4 mt-12">

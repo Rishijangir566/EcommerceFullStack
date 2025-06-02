@@ -9,6 +9,7 @@ import authRouter from "./Routes/authRouter.js";
 import dealRouter from "./Routes/dealRouter.js";
 import adminRouter from "./Routes/adminRouter.js";
 import cartRouter from "./Routes/cartRouter.js";
+import couponRouter from "./Routes/couponRouter.js";
 
 const app = express();
 const port = process.env.PORT;
@@ -32,6 +33,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/deals", dealRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/coupon", couponRouter);
+
 connectDB();
 
 app.listen(port, () => {

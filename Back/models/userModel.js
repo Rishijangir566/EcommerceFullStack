@@ -11,7 +11,12 @@ const userSchema = new mongoose.Schema({
    role:{
     type:String,
   default:"user"
-   }
+   },
+   appliedCoupon: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Coupon",
+    default: null,
+  },
 })
 
 const User = mongoose.model("User", userSchema)
